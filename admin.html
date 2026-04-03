@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin · Seminare Flores</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF6F0;
+      --blush: #E8C9B5;
+      --rose: #C97B63;
+      --deep: #3D2B1F;
+      --forest: #4A5C43;
+      --sage: #8BA888;
+      --gold: #B8A06A;
+      --white: #FFFFFF;
+      --text: #2C1F17;
+      --text-light: #7A6358;
+      --sidebar-w: 240px;
+      --panel-bg: #F5EFE8;
+      --card-bg: #FFFFFF;
+      --border: #E8DDD4;
+      --success: #4A5C43;
+      --danger: #C97B63;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--panel-bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--deep);
+      color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 100;
+    }
+
+    .sidebar-logo {
+      padding: 2rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sidebar-logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--cream);
+    }
+
+    .sidebar-logo h1 span { color: var(--rose); }
+
+    .sidebar-logo p {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,246,240,0.4);
+      margin-top: 0.3rem;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 1.5rem 0;
+    }
+
+    .nav-section-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(250,246,240,0.3);
+      padding: 0 1.5rem;
+      margin-bottom: 0.5rem;
+      margin-top: 1.2rem;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      background: none;
+      border: none;
+      color: rgba(250,246,240,0.6);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.83rem;
+      font-weight: 400;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      border-left: 2px solid transparent;
+    }
+
+    .nav-btn:hover {
+      color: var(--cream);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .nav-btn.active {
+      color: var(--cream);
+      background: rgba(201,123,99,0.2);
+      border-left-color: var(--rose);
+    }
+
+    .nav-btn .nav-icon { font-size: 1rem; }
+
+    .sidebar-footer {
+      padding: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .view-site-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(250,246,240,0.5);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .view-site-link:hover { color: var(--rose); }
+
+    /* ===== MAIN CONTENT ===== */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 2rem;
+      max-width: calc(100vw - var(--sidebar-w));
+    }
+
+    .page-header {
+      margin-bottom: 2rem;
+    }
+
+    .page-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--deep);
+    }
+
+    .page-header p {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-top: 0.3rem;
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+
+    /* ===== STATS ===== */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--deep);
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-top: 0.2rem;
+    }
+
+    /* ===== UPLOAD ZONE ===== */
+    .upload-zone {
+      border: 2px dashed var(--blush);
+      border-radius: 8px;
+      padding: 3rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fdf9f6;
+    }
+
+    .upload-zone:hover,
+    .upload-zone.drag-over {
+      border-color: var(--rose);
+      background: rgba(201,123,99,0.05);
+    }
+
+    .upload-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+
+    .upload-label {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .upload-hint {
+      font-size: 0.72rem;
+      color: var(--blush);
+      letter-spacing: 0.1em;
+    }
+
+    #fileInput { display: none; }
+
+    /* ===== FORM ===== */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .form-control {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.65rem 0.9rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text);
+      background: white;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-control:focus { border-color: var(--rose); }
+
+    select.form-control { cursor: pointer; }
+
+    textarea.form-control { resize: vertical; min-height: 90px; }
+
+    /* ===== PREVIEW GRID ===== */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .preview-item {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      border: 1px solid var(--border);
+    }
+
+    .preview-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .preview-item-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--blush), var(--sage));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .preview-actions {
+      position: absolute;
+      top: 0.4rem;
+      right: 0.4rem;
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .preview-actions button {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.7rem;
+      transition: all 0.2s;
+    }
+
+    .btn-toggle-active { background: rgba(74,92,67,0.9); color: white; }
+    .btn-toggle-active.inactive { background: rgba(201,123,99,0.9); }
+    .btn-delete { background: rgba(61,43,31,0.85); color: white; }
+    .btn-delete:hover { background: rgba(180,50,30,0.9); }
+
+    .preview-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      padding: 0.5rem 0.5rem 0.4rem;
+      font-size: 0.65rem;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .inactive-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ===== SERVICES TABLE ===== */
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card-bg);
+      transition: all 0.2s;
+    }
+
+    .service-item.inactive {
+      opacity: 0.5;
+      background: #f9f4ef;
+    }
+
+    .service-item-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+    .service-item-info { flex: 1; }
+
+    .service-item-info strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--deep);
+    }
+
+    .service-item-info span {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    .service-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ===== TOGGLE SWITCH ===== */
+    .toggle {
+      position: relative;
+      width: 44px; height: 22px;
+      flex-shrink: 0;
+    }
+
+    .toggle input { opacity: 0; width: 0; height: 0; }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--blush);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      left: 3px; top: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .toggle input:checked + .toggle-slider { background: var(--forest); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(22px); }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.5rem;
+      border-radius: 4px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--rose);
+      color: white;
+    }
+
+    .btn-primary:hover { background: var(--deep); }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-light);
+    }
+
+    .btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
+
+    .btn-success {
+      background: var(--forest);
+      color: white;
+    }
+
+    .btn-danger {
+      background: transparent;
+      border: 1px solid var(--blush);
+      color: var(--rose);
+    }
+
+    .btn-danger:hover { background: var(--rose); color: white; }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--deep);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      z-index: 1000;
+      transform: translateY(-100px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast.success { background: var(--forest); }
+    .toast.error { background: var(--rose); }
+
+    /* ===== SECTION TABS ===== */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ===== SERVICE FORM MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      width: 480px;
+      max-width: 95vw;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(0.95);
+      transition: transform 0.3s;
+    }
+
+    .modal-overlay.open .modal { transform: scale(1); }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--deep);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+
+    /* ===== WHATSAPP CONFIG ===== */
+    .wa-option-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wa-option-row:last-child { border-bottom: none; }
+
+    .wa-option-emoji { font-size: 1.3rem; flex-shrink: 0; }
+
+    .wa-option-text { flex: 1; font-size: 0.85rem; color: var(--text); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; max-width: 100%; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h1>Seminare <span>Flores</span></h1>
+      <p>Panel de administración</p>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Principal</div>
+      <button class="nav-btn active" onclick="showTab('dashboard')">
+        <span class="nav-icon">🏠</span> Dashboard
+      </button>
+
+      <div class="nav-section-label">Contenido</div>
+      <button class="nav-btn" onclick="showTab('gallery')">
+        <span class="nav-icon">🖼️</span> Galería
+      </button>
+      <button class="nav-btn" onclick="showTab('services')">
+        <span class="nav-icon">🌸</span> Servicios
+      </button>
+
+      <div class="nav-section-label">Configuración</div>
+      <button class="nav-btn" onclick="showTab('whatsapp')">
+        <span class="nav-icon">💬</span> WhatsApp
+      </button>
+      <button class="nav-btn" onclick="showTab('seo')">
+        <span class="nav-icon">🔍</span> SEO & Google
+      </button>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="index.html" target="_blank" class="view-site-link">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Ver sitio web
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <div class="tab-content active" id="tab-dashboard">
+      <div class="page-header">
+        <h2>Dashboard</h2>
+        <p>Bienvenida al panel de Seminare Flores</p>
+      </div>
+
+      <div class="stats-row" id="statsRow">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Acciones rápidas</span>
+        </div>
+        <div style="display:flex; gap:0.8rem; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="showTab('gallery')">📷 Subir foto</button>
+          <button class="btn btn-secondary" onclick="showTab('services')">✏️ Editar servicios</button>
+          <button class="btn btn-secondary" onclick="showTab('whatsapp')">💬 Configurar WhatsApp</button>
+          <a href="index.html" target="_blank" class="btn btn-success">🌐 Ver sitio web</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Últimas fotos subidas</span>
+        </div>
+        <div class="preview-grid" id="recentPhotos" style="max-height:300px; overflow-y:auto;"></div>
+      </div>
+    </div>
+
+    <!-- GALLERY -->
+    <div class="tab-content" id="tab-gallery">
+      <div class="page-header">
+        <h2>Gestionar Galería</h2>
+        <p>Sube fotos, activa o desactiva publicaciones</p>
+      </div>
+
+      <!-- UPLOAD -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Subir nueva foto</span>
+        </div>
+
+        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+          <div class="upload-icon">📷</div>
+          <div class="upload-label">Haz clic o arrastra una imagen aquí</div>
+          <div class="upload-hint">JPG, PNG, WEBP — máx 5MB por imagen</div>
+        </div>
+        <input type="file" id="fileInput" accept="image/*" multiple />
+
+        <div id="uploadPreview" style="display:none; margin-top:1.2rem;">
+          <img id="uploadPreviewImg" src="" alt="Preview" style="max-height:200px; border-radius:6px; object-fit:cover;" />
+        </div>
+
+        <div class="form-row" style="margin-top:1.2rem;">
+          <div class="form-group">
+            <label>Título / descripción</label>
+            <input type="text" class="form-control" id="photoLabel" placeholder="Ej: Ramo de rosas para boda" />
+          </div>
+          <div class="form-group">
+            <label>Categoría</label>
+            <select class="form-control" id="photoCategory">
+              <option value="ramos">Ramos</option>
+              <option value="bodas">Bodas</option>
+              <option value="eventos">Eventos</option>
+              <option value="regalos">Regalos</option>
+              <option value="centros">Centros de mesa</option>
+              <option value="otros">Otros</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="savePhoto()">💾 Guardar foto</button>
+      </div>
+
+      <!-- GALLERY GRID -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Todas las fotos (<span id="photoCount">0</span>)</span>
+          <button class="btn btn-danger btn-secondary" onclick="clearAllPhotos()" style="font-size:0.7rem; padding:0.4rem 0.8rem;">
+            🗑️ Limpiar todo
+          </button>
+        </div>
+        <div class="preview-grid" id="allPhotosGrid"></div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="tab-content" id="tab-services">
+      <div class="page-header">
+        <h2>Gestionar Servicios</h2>
+        <p>Activa, desactiva o edita los servicios que ofreces</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Servicios</span>
+          <button class="btn btn-primary" onclick="openServiceModal()">+ Nuevo servicio</button>
+        </div>
+        <div class="service-list" id="servicesList"></div>
+      </div>
+    </div>
+
+    <!-- WHATSAPP -->
+    <div class="tab-content" id="tab-whatsapp">
+      <div class="page-header">
+        <h2>Configuración WhatsApp</h2>
+        <p>Personaliza el número y los mensajes automáticos</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Número de WhatsApp</span>
+        </div>
+        <div class="form-group">
+          <label>Número (formato internacional sin +)</label>
+          <input type="text" class="form-control" id="waPhone" placeholder="34600000000" style="max-width:300px;" />
+          <small style="font-size:0.72rem; color:var(--text-light); margin-top:0.3rem;">Ejemplo: 34612345678 (España)</small>
+        </div>
+        <button class="btn btn-primary" onclick="saveWaPhone()">💾 Guardar número</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Opciones de consulta automáticas</span>
+        </div>
+        <p style="font-size:0.8rem; color:var(--text-light); margin-bottom:1rem;">Estos son los botones que aparecerán en el chat emergente. El cliente los toca y se abre WhatsApp con el mensaje.</p>
+        <div id="waOptionsList">
+          <!-- Populated by JS -->
+        </div>
+        <button class="btn btn-secondary" onclick="addWaOption()" style="margin-top:0.8rem;">+ Agregar opción</button>
+        <button class="btn btn-primary" onclick="saveWaOptions()" style="margin-top:0.8rem; margin-left:0.5rem;">💾 Guardar opciones</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Mensaje de bienvenida</span>
+        </div>
+        <div class="form-group">
+          <label>Texto del globo de saludo</label>
+          <textarea class="form-control" id="waWelcome" style="min-height:100px;">¡Hola! 👋 Bienvenida a Seminare Flores.
+
+Hago ramos y arreglos florales a pedido en Barcelona y alrededores. 🌹
+
+¿En qué puedo ayudarte hoy?</textarea>
+        </div>
+        <button class="btn btn-primary" onclick="saveWaWelcome()">💾 Guardar mensaje</button>
+      </div>
+    </div>
+
+    <!-- SEO -->
+    <div class="tab-content" id="tab-seo">
+      <div class="page-header">
+        <h2>SEO & Google</h2>
+        <p>Configura el posicionamiento en buscadores</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Información básica SEO</span>
+        </div>
+        <div class="form-group">
+          <label>Título de la página</label>
+          <input type="text" class="form-control" id="seoTitle" value="Seminare Flores | Ramos y Arreglos Florales en Barcelona" />
+        </div>
+        <div class="form-group">
+          <label>Descripción (meta description)</label>
+          <textarea class="form-control" id="seoDesc">Ramos de flores y arreglos florales a pedido en Barcelona y 50 km. Diseños únicos para bodas, eventos, regalos y ocasiones especiales. Encarga el tuyo por WhatsApp.</textarea>
+        </div>
+        <div class="form-group">
+          <label>Número de teléfono (para Google Business)</label>
+          <input type="text" class="form-control" id="seoPhone" placeholder="+34 600 000 000" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ciudad principal</label>
+            <input type="text" class="form-control" id="seoCity" value="Barcelona" />
+          </div>
+          <div class="form-group">
+            <label>Radio de cobertura (km)</label>
+            <input type="number" class="form-control" id="seoRadius" value="50" />
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="saveSEO()">💾 Guardar configuración SEO</button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Guía de posicionamiento Google</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.8rem;">
+          <div class="wa-option-row">
+            <div class="wa-option-emoji">✅</div>
+            <div class="wa-option-text"><strong>Schema Local Business</strong> — Ya está configurado en el código con tus datos.</div>
+          </div>
+          <div class="wa-option-row">
+            <div class="wa-option-emoji">📍</div>
+            <div class="wa-option-text"><strong>Google Business Profile</strong> — Crea un perfil en <a href="https://business.google.com" target="_blank" style="color:var(--rose)">business.google.com</a> con el mismo nombre "Seminare Flores" y tu número de teléfono.</div>
+          </div>
+          <div class="wa-option-row">
+            <div class="wa-option-emoji">🗺️</div>
+            <div class="wa-option-text"><strong>Google Maps</strong> — Desde tu Google Business Profile, añade tu ubicación y zona de servicio de 50 km.</div>
+          </div>
+          <div class="wa-option-row">
+            <div class="wa-option-emoji">📸</div>
+            <div class="wa-option-text"><strong>Fotos en Google Business</strong> — Sube tus mejores fotos directamente desde el panel de Google Business.</div>
+          </div>
+          <div class="wa-option-row">
+            <div class="wa-option-emoji">⭐</div>
+            <div class="wa-option-text"><strong>Reseñas</strong> — Pide a tus clientas que dejen reseñas en Google. Son el factor más importante de posicionamiento local.</div>
+          </div>
+          <div class="wa-option-row">
+            <div class="wa-option-emoji">🔗</div>
+            <div class="wa-option-text"><strong>URL del sitio</strong> — Una vez desplegado en Vercel, añade esa URL a tu perfil de Google Business como sitio web.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Guía de despliegue en Vercel + GitHub</span>
+        </div>
+        <div style="font-size:0.83rem; color:var(--text-light); line-height:1.9;">
+          <p><strong style="color:var(--deep)">1. GitHub:</strong> Crea un repositorio nuevo en <a href="https://github.com" target="_blank" style="color:var(--rose)">github.com</a> y sube todos los archivos del proyecto (index.html, admin.html).</p>
+          <p><strong style="color:var(--deep)">2. Vercel:</strong> Ve a <a href="https://vercel.com" target="_blank" style="color:var(--rose)">vercel.com</a> → "Add New Project" → conecta tu cuenta de GitHub → selecciona el repositorio.</p>
+          <p><strong style="color:var(--deep)">3. Dominio:</strong> Vercel te da una URL gratuita (.vercel.app). Puedes conectar un dominio propio si tienes uno.</p>
+          <p><strong style="color:var(--deep)">4. Actualizar:</strong> Cada vez que hagas cambios en GitHub, Vercel actualiza el sitio automáticamente.</p>
+          <p><strong style="color:var(--deep)">5. Google Search Console:</strong> Registra tu URL en <a href="https://search.google.com/search-console" target="_blank" style="color:var(--rose)">Search Console</a> para monitorear el posicionamiento.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- SERVICE MODAL -->
+  <div class="modal-overlay" id="serviceModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Nuevo servicio</h3>
+        <button class="modal-close" onclick="closeServiceModal()">✕</button>
+      </div>
+      <div class="form-group">
+        <label>Emoji / ícono</label>
+        <input type="text" class="form-control" id="svcIcon" placeholder="🌸" style="max-width:80px;" />
+      </div>
+      <div class="form-group">
+        <label>Nombre del servicio</label>
+        <input type="text" class="form-control" id="svcTitle" placeholder="Ej: Arreglos para Baby Shower" />
+      </div>
+      <div class="form-group">
+        <label>Descripción</label>
+        <textarea class="form-control" id="svcDesc" placeholder="Describe el servicio brevemente..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Etiqueta pequeña</label>
+        <input type="text" class="form-control" id="svcTag" placeholder="Ej: A pedido, Bajo consulta..." />
+      </div>
+      <div class="form-group">
+        <label>Categoría</label>
+        <select class="form-control" id="svcCategory">
+          <option value="bodas">Bodas</option>
+          <option value="eventos">Eventos</option>
+          <option value="regalos">Regalos</option>
+          <option value="centros">Centros de mesa</option>
+          <option value="otros">Otros</option>
+        </select>
+      </div>
+      <div style="display:flex; gap:0.8rem; justify-content:flex-end; margin-top:1rem;">
+        <button class="btn btn-secondary" onclick="closeServiceModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="saveService()">💾 Guardar servicio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ===== DEFAULT DATA =====
+    const defaultServices = [
+      { id: 1, icon: '💍', title: 'Bodas', desc: 'Diseños únicos para el día más especial. Ramos de novia, centros de mesa, arcos florales y decoración completa.', tag: 'Consulta previa', category: 'bodas', active: true },
+      { id: 2, icon: '🎉', title: 'Eventos', desc: 'Decoración floral para fiestas, cumpleaños, comuniones, bautizos y todo tipo de celebraciones.', tag: 'A medida', category: 'eventos', active: true },
+      { id: 3, icon: '🎁', title: 'Ramos regalo', desc: 'El regalo más especial para cualquier ocasión: aniversarios, San Valentín, Día de la Madre o simplemente por amor.', tag: 'Entrega en la zona', category: 'regalos', active: true },
+      { id: 4, icon: '🌿', title: 'Arreglos de hogar', desc: 'Centros de mesa y arreglos para decorar tu hogar con flores frescas y de temporada.', tag: 'Flores de temporada', category: 'centros', active: true },
+      { id: 5, icon: '🤍', title: 'Condolencias', desc: 'Coronas y centros florales para expresar condolencias y acompañar en los momentos difíciles.', tag: 'Entrega discreta', category: 'otros', active: true },
+      { id: 6, icon: '✨', title: 'Diseños personalizados', desc: 'Tienes una idea en mente y no sabes cómo expresarla. Cuéntame y juntas la hacemos realidad.', tag: 'A pedido', category: 'otros', active: true },
+    ];
+
+    const defaultWaOptions = [
+      { emoji: '💍', text: 'Quiero flores para una boda' },
+      { emoji: '🎁', text: 'Busco un ramo de regalo' },
+      { emoji: '🎉', text: 'Necesito decoración para un evento' },
+      { emoji: '💐', text: 'Quiero ver precios y disponibilidad' },
+      { emoji: '📸', text: 'Tengo una idea y quiero consultarla' },
+    ];
+
+    // ===== HELPERS =====
+    function getData(key, def) {
+      try { return JSON.parse(localStorage.getItem(key)) || def; }
+      catch { return def; }
+    }
+
+    function setData(key, val) {
+      localStorage.setItem(key, JSON.stringify(val));
+    }
+
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = (type === 'success' ? '✓ ' : '✗ ') + msg;
+      t.className = `toast ${type} show`;
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ===== TAB NAVIGATION =====
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`tab-${tab}`).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(b => {
+        if (b.textContent.toLowerCase().includes(tab) || 
+            (tab === 'dashboard' && b.textContent.includes('Dashboard')) ||
+            (tab === 'gallery' && b.textContent.includes('Galer')) ||
+            (tab === 'services' && b.textContent.includes('Servic')) ||
+            (tab === 'whatsapp' && b.textContent.includes('WhatsApp')) ||
+            (tab === 'seo' && b.textContent.includes('SEO'))) {
+          b.classList.add('active');
+        }
+      });
+    }
+
+    // ===== DASHBOARD STATS =====
+    function renderStats() {
+      const gallery = getData('sf_gallery', []);
+      const services = getData('sf_services', defaultServices);
+      const active = gallery.filter(i => i.active !== false).length;
+      const activeServices = services.filter(s => s.active !== false).length;
+
+      document.getElementById('statsRow').innerHTML = `
+        <div class="stat-card">
+          <div class="stat-value">${gallery.length}</div>
+          <div class="stat-label">Fotos totales</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${active}</div>
+          <div class="stat-label">Fotos activas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${activeServices}</div>
+          <div class="stat-label">Servicios activos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">50km</div>
+          <div class="stat-label">Zona de cobertura</div>
+        </div>
+      `;
+    }
+
+    // ===== GALLERY =====
+    let currentPhotoData = null;
+
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) {
+        showToast('La imagen es demasiado grande (máx 5MB)', 'error');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        currentPhotoData = ev.target.result;
+        const preview = document.getElementById('uploadPreview');
+        const img = document.getElementById('uploadPreviewImg');
+        img.src = currentPhotoData;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Drag and drop
+    const uploadZone = document.getElementById('uploadZone');
+    uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+    uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
+    uploadZone.addEventListener('drop', e => {
+      e.preventDefault();
+      uploadZone.classList.remove('drag-over');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = ev => {
+          currentPhotoData = ev.target.result;
+          document.getElementById('uploadPreviewImg').src = currentPhotoData;
+          document.getElementById('uploadPreview').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function savePhoto() {
+      if (!currentPhotoData) {
+        showToast('Selecciona una imagen primero', 'error');
+        return;
+      }
+      const label = document.getElementById('photoLabel').value || 'Arreglo floral';
+      const category = document.getElementById('photoCategory').value;
+      const tags = { ramos: 'Ramos', bodas: 'Bodas', eventos: 'Eventos', regalos: 'Regalos', centros: 'Centros', otros: 'Otros' };
+
+      const gallery = getData('sf_gallery', []);
+      gallery.unshift({
+        id: Date.now(),
+        imgSrc: currentPhotoData,
+        label,
+        category,
+        tag: tags[category] || category,
+        active: true,
+        height: 260,
+      });
+
+      setData('sf_gallery', gallery);
+      currentPhotoData = null;
+      document.getElementById('uploadPreview').style.display = 'none';
+      document.getElementById('photoLabel').value = '';
+      document.getElementById('fileInput').value = '';
+      showToast('Foto guardada y publicada en el sitio');
+      renderAllPhotos();
+      renderStats();
+    }
+
+    function renderAllPhotos() {
+      const gallery = getData('sf_gallery', []);
+      const grid = document.getElementById('allPhotosGrid');
+      document.getElementById('photoCount').textContent = gallery.length;
+
+      if (gallery.length === 0) {
+        grid.innerHTML = '<p style="font-size:0.82rem; color:var(--text-light); padding:1rem 0;">No hay fotos aún. ¡Sube tu primera imagen!</p>';
+        return;
+      }
+
+      grid.innerHTML = gallery.map((item, idx) => `
+        <div class="preview-item" id="photo-${item.id}">
+          ${item.imgSrc
+            ? `<img src="${item.imgSrc}" alt="${item.label}" />`
+            : `<div class="preview-item-placeholder">${item.emoji || '🌸'}</div>`
+          }
+          ${!item.active ? '<div class="inactive-overlay">Inactiva</div>' : ''}
+          <div class="preview-actions">
+            <button class="btn-toggle-active ${!item.active ? 'inactive' : ''}" 
+              onclick="togglePhoto(${item.id})" 
+              title="${item.active ? 'Desactivar' : 'Activar'}">
+              ${item.active ? '👁️' : '🚫'}
+            </button>
+            <button class="btn-delete" onclick="deletePhoto(${item.id})" title="Eliminar">🗑️</button>
+          </div>
+          <div class="preview-label">${item.label || item.category}</div>
+        </div>
+      `).join('');
+
+      // Also render in dashboard
+      const recent = document.getElementById('recentPhotos');
+      if (recent) recent.innerHTML = grid.innerHTML;
+    }
+
+    function togglePhoto(id) {
+      const gallery = getData('sf_gallery', []);
+      const idx = gallery.findIndex(i => i.id === id);
+      if (idx > -1) {
+        gallery[idx].active = !gallery[idx].active;
+        setData('sf_gallery', gallery);
+        renderAllPhotos();
+        renderStats();
+        showToast(gallery[idx].active ? 'Foto publicada' : 'Foto desactivada');
+      }
+    }
+
+    function deletePhoto(id) {
+      if (!confirm('¿Eliminar esta foto?')) return;
+      let gallery = getData('sf_gallery', []);
+      gallery = gallery.filter(i => i.id !== id);
+      setData('sf_gallery', gallery);
+      renderAllPhotos();
+      renderStats();
+      showToast('Foto eliminada');
+    }
+
+    function clearAllPhotos() {
+      if (!confirm('¿Eliminar TODAS las fotos? Esta acción no se puede deshacer.')) return;
+      setData('sf_gallery', []);
+      renderAllPhotos();
+      renderStats();
+      showToast('Galería vaciada');
+    }
+
+    // ===== SERVICES =====
+    let editingServiceId = null;
+
+    function renderServices() {
+      const services = getData('sf_services', defaultServices);
+      const list = document.getElementById('servicesList');
+
+      list.innerHTML = services.map(s => `
+        <div class="service-item ${!s.active ? 'inactive' : ''}">
+          <div class="service-item-icon">${s.icon}</div>
+          <div class="service-item-info">
+            <strong>${s.title}</strong>
+            <span>${s.desc.substring(0, 80)}...</span>
+          </div>
+          <div class="service-item-actions">
+            <label class="toggle">
+              <input type="checkbox" ${s.active ? 'checked' : ''} onchange="toggleService(${s.id})" />
+              <span class="toggle-slider"></span>
+            </label>
+            <button class="btn btn-secondary" style="padding:0.4rem 0.8rem; font-size:0.7rem;" onclick="editService(${s.id})">✏️</button>
+            <button class="btn btn-danger" style="padding:0.4rem 0.8rem; font-size:0.7rem;" onclick="deleteService(${s.id})">🗑️</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleService(id) {
+      const services = getData('sf_services', defaultServices);
+      const idx = services.findIndex(s => s.id === id);
+      if (idx > -1) {
+        services[idx].active = !services[idx].active;
+        setData('sf_services', services);
+        renderServices();
+        renderStats();
+        showToast(services[idx].active ? 'Servicio activado' : 'Servicio desactivado');
+      }
+    }
+
+    function deleteService(id) {
+      if (!confirm('¿Eliminar este servicio?')) return;
+      let services = getData('sf_services', defaultServices);
+      services = services.filter(s => s.id !== id);
+      setData('sf_services', services);
+      renderServices();
+      renderStats();
+      showToast('Servicio eliminado');
+    }
+
+    function openServiceModal(id = null) {
+      editingServiceId = id;
+      document.getElementById('modalTitle').textContent = id ? 'Editar servicio' : 'Nuevo servicio';
+      if (id) {
+        const services = getData('sf_services', defaultServices);
+        const s = services.find(sv => sv.id === id);
+        if (s) {
+          document.getElementById('svcIcon').value = s.icon;
+          document.getElementById('svcTitle').value = s.title;
+          document.getElementById('svcDesc').value = s.desc;
+          document.getElementById('svcTag').value = s.tag;
+          document.getElementById('svcCategory').value = s.category;
+        }
+      } else {
+        document.getElementById('svcIcon').value = '';
+        document.getElementById('svcTitle').value = '';
+        document.getElementById('svcDesc').value = '';
+        document.getElementById('svcTag').value = '';
+      }
+      document.getElementById('serviceModal').classList.add('open');
+    }
+
+    function editService(id) { openServiceModal(id); }
+
+    function closeServiceModal() {
+      document.getElementById('serviceModal').classList.remove('open');
+      editingServiceId = null;
+    }
+
+    function saveService() {
+      const icon = document.getElementById('svcIcon').value || '🌸';
+      const title = document.getElementById('svcTitle').value;
+      const desc = document.getElementById('svcDesc').value;
+      const tag = document.getElementById('svcTag').value;
+      const category = document.getElementById('svcCategory').value;
+
+      if (!title || !desc) {
+        showToast('Completa el nombre y la descripción', 'error');
+        return;
+      }
+
+      let services = getData('sf_services', defaultServices);
+
+      if (editingServiceId) {
+        const idx = services.findIndex(s => s.id === editingServiceId);
+        if (idx > -1) {
+          services[idx] = { ...services[idx], icon, title, desc, tag, category };
+        }
+      } else {
+        services.push({ id: Date.now(), icon, title, desc, tag, category, active: true });
+      }
+
+      setData('sf_services', services);
+      closeServiceModal();
+      renderServices();
+      renderStats();
+      showToast(editingServiceId ? 'Servicio actualizado' : 'Servicio creado');
+    }
+
+    // ===== WHATSAPP =====
+    function renderWaOptions() {
+      const options = getData('sf_wa_options', defaultWaOptions);
+      const list = document.getElementById('waOptionsList');
+
+      list.innerHTML = options.map((opt, i) => `
+        <div class="wa-option-row" id="wa-opt-${i}">
+          <input type="text" class="form-control" value="${opt.emoji}" style="max-width:60px; text-align:center;" id="wa-emoji-${i}" />
+          <input type="text" class="form-control" value="${opt.text}" style="flex:1;" id="wa-text-${i}" />
+          <button class="btn btn-danger" style="padding:0.4rem 0.6rem;" onclick="removeWaOption(${i})">🗑️</button>
+        </div>
+      `).join('');
+
+      const phone = getData('sf_wa_phone', '34600000000');
+      document.getElementById('waPhone').value = phone;
+
+      const welcome = getData('sf_wa_welcome', '');
+      if (welcome) document.getElementById('waWelcome').value = welcome;
+    }
+
+    function addWaOption() {
+      const options = getData('sf_wa_options', defaultWaOptions);
+      options.push({ emoji: '🌸', text: 'Nueva consulta' });
+      setData('sf_wa_options', options);
+      renderWaOptions();
+    }
+
+    function removeWaOption(idx) {
+      let options = getData('sf_wa_options', defaultWaOptions);
+      options.splice(idx, 1);
+      setData('sf_wa_options', options);
+      renderWaOptions();
+    }
+
+    function saveWaOptions() {
+      const options = getData('sf_wa_options', defaultWaOptions);
+      const saved = options.map((_, i) => ({
+        emoji: document.getElementById(`wa-emoji-${i}`)?.value || '🌸',
+        text: document.getElementById(`wa-text-${i}`)?.value || '',
+      })).filter(o => o.text);
+      setData('sf_wa_options', saved);
+      showToast('Opciones de WhatsApp guardadas');
+    }
+
+    function saveWaPhone() {
+      const phone = document.getElementById('waPhone').value.replace(/\D/g, '');
+      setData('sf_wa_phone', phone);
+      showToast('Número de WhatsApp guardado');
+    }
+
+    function saveWaWelcome() {
+      const msg = document.getElementById('waWelcome').value;
+      setData('sf_wa_welcome', msg);
+      showToast('Mensaje de bienvenida guardado');
+    }
+
+    function saveSEO() {
+      const seo = {
+        title: document.getElementById('seoTitle').value,
+        desc: document.getElementById('seoDesc').value,
+        phone: document.getElementById('seoPhone').value,
+        city: document.getElementById('seoCity').value,
+        radius: document.getElementById('seoRadius').value,
+      };
+      setData('sf_seo', seo);
+      showToast('Configuración SEO guardada');
+    }
+
+    // ===== INIT =====
+    renderStats();
+    renderAllPhotos();
+    renderServices();
+    renderWaOptions();
+  </script>
+</body>
+</html>
