@@ -434,6 +434,24 @@ CREATE POLICY "allow_delete" ON storage.objects FOR DELETE USING (bucket_id = 'g
   <div class="tab-content" id="tab-whatsapp">
     <div class="page-header"><h2>Configuración WhatsApp</h2><p>Número y respuestas automáticas</p></div>
     <div class="card">
+      <div class="card-header"><span class="card-title">Imagen de fondo — Sección Servicios</span></div>
+      <p style="font-size:0.82rem;color:var(--text-light);margin-bottom:1rem">Esta imagen aparece de fondo en la sección de servicios, borrosa y translúcida. Elige una foto floral bonita.</p>
+      <div class="upload-zone" id="bgUploadZone" onclick="document.getElementById('bgFileInput').click()">
+        <div class="upload-icon">🖼️</div>
+        <div class="upload-label">Haz clic o arrastra una imagen de fondo</div>
+        <div class="upload-hint">JPG, PNG · recomendado horizontal · máx 5MB</div>
+      </div>
+      <input type="file" id="bgFileInput" accept="image/*" />
+      <div id="bgPreviewWrap" style="display:none;margin-top:1rem;">
+        <img id="bgPreviewImg" src="" alt="" style="max-height:140px;border-radius:6px;object-fit:cover;width:100%" />
+      </div>
+      <div class="progress-wrap" id="bgProgressWrap">
+        <div class="progress-label">Subiendo...</div>
+        <div class="progress-bar"><div class="progress-fill" id="bgProgressFill"></div></div>
+      </div>
+      <button class="btn btn-primary" id="saveBgBtn" onclick="saveServicesBg()" style="margin-top:1rem">💾 Guardar imagen de fondo</button>
+    </div>
+    <div class="card">
       <div class="card-header"><span class="card-title">Número de WhatsApp</span></div>
       <div class="form-group">
         <label>Número (código país + número, sin + ni espacios)</label>
@@ -879,6 +897,62 @@ CREATE POLICY "allow_delete" ON storage.objects FOR DELETE USING (bucket_id = 'g
     else await sb.from('services').insert({ ...payload, active: true });
     showToast(editingSvcId ? 'Servicio actualizado' : 'Servicio creado', 'success');
     closeServiceModal(); await loadServices(); await loadStats();
+  }
+
+  // ===== SERVICES BACKGROUND =====
+  let selectedBgFile = null;
+
+  document.getElementById('bgFileInput').addEventListener('change', e => {
+    const f = e.target.files[0];
+    if (!f) return;
+    selectedBgFile = f;
+    document.getElementById('bgPreviewImg').src = URL.createObjectURL(f);
+    document.getElementById('bgPreviewWrap').style.display = 'block';
+  });
+
+  const bguz = document.getElementById('bgUploadZone');
+  bguz.addEventListener('dragover', e => { e.preventDefault(); bguz.classList.add('drag-over'); });
+  bguz.addEventListener('dragleave', () => bguz.classList.remove('drag-over'));
+  bguz.addEventListener('drop', e => {
+    e.preventDefault(); bguz.classList.remove('drag-over');
+    const f = e.dataTransfer.files[0];
+    if (f?.type.startsWith('image/')) {
+      selectedBgFile = f;
+      document.getElementById('bgPreviewImg').src = URL.createObjectURL(f);
+      document.getElementById('bgPreviewWrap').style.display = 'block';
+    }
+  });
+
+  async function saveServicesBg() {
+    if (!selectedBgFile) { showToast('Selecciona una imagen', 'error'); return; }
+    const btn = document.getElementById('saveBgBtn');
+    btn.innerHTML = '<span class="spinner"></span> Subiendo...';
+    btn.disabled = true;
+    const pw = document.getElementById('bgProgressWrap');
+    const pf = document.getElementById('bgProgressFill');
+    pw.style.display = 'block'; pf.style.width = '0%';
+    let pct = 0;
+    const iv = setInterval(() => { pct = Math.min(pct + 10, 85); pf.style.width = pct + '%'; }, 200);
+    try {
+      const ext = selectedBgFile.name.split('.').pop() || 'jpg';
+      const fname = `services_bg_${Date.now()}.${ext}`;
+      const { error: sErr } = await sb.storage.from('gallery').upload(fname, selectedBgFile, { contentType: selectedBgFile.type });
+      if (sErr) throw sErr;
+      clearInterval(iv); pf.style.width = '95%';
+      const { data: { publicUrl } } = sb.storage.from('gallery').getPublicUrl(fname);
+      await sb.from('config').upsert({ key: 'services_bg', value: publicUrl }, { onConflict: 'key' });
+      pf.style.width = '100%';
+      setTimeout(() => { pw.style.display = 'none'; pf.style.width = '0%'; }, 500);
+      showToast('Imagen de fondo actualizada ✨', 'success');
+      selectedBgFile = null;
+      document.getElementById('bgFileInput').value = '';
+      document.getElementById('bgPreviewWrap').style.display = 'none';
+    } catch (e) {
+      clearInterval(iv);
+      showToast('Error: ' + e.message, 'error');
+    } finally {
+      btn.innerHTML = '💾 Guardar imagen de fondo'; btn.disabled = false;
+    }
   }
 
   // ===== WHATSAPP =====
