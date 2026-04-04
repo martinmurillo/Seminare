@@ -471,70 +471,94 @@
       color: white;
     }
 
-    .gallery-masonry {
-      columns: 4;
-      column-gap: 12px;
+    /* ===== MOSAIC GALLERY GRID ===== */
+    .gallery-mosaic-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 80px;
+      gap: 8px;
     }
 
-    @media (max-width: 1200px) { .gallery-masonry { columns: 3; } }
-    @media (max-width: 768px) { .gallery-masonry { columns: 2; } }
-    @media (max-width: 480px) { .gallery-masonry { columns: 1; } }
+    /* Size patterns cycling: large, medium, small */
+    .gallery-item { position: relative; overflow: hidden; border-radius: 6px; cursor: pointer; }
+    .gallery-item.size-large  { grid-column: span 6; grid-row: span 4; }
+    .gallery-item.size-medium { grid-column: span 4; grid-row: span 3; }
+    .gallery-item.size-small  { grid-column: span 3; grid-row: span 2; }
+    .gallery-item.size-wide   { grid-column: span 8; grid-row: span 3; }
+    .gallery-item.size-tall   { grid-column: span 3; grid-row: span 4; }
 
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 12px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 3px;
-      cursor: pointer;
+    @media (max-width: 900px) {
+      .gallery-mosaic-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 70px; }
+      .gallery-item.size-large  { grid-column: span 4; grid-row: span 4; }
+      .gallery-item.size-medium { grid-column: span 3; grid-row: span 3; }
+      .gallery-item.size-small  { grid-column: span 2; grid-row: span 2; }
+      .gallery-item.size-wide   { grid-column: span 5; grid-row: span 3; }
+      .gallery-item.size-tall   { grid-column: span 2; grid-row: span 4; }
+    }
+
+    @media (max-width: 540px) {
+      .gallery-mosaic-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 65px; }
+      .gallery-item.size-large  { grid-column: span 3; grid-row: span 3; }
+      .gallery-item.size-medium { grid-column: span 2; grid-row: span 3; }
+      .gallery-item.size-small  { grid-column: span 2; grid-row: span 2; }
+      .gallery-item.size-wide   { grid-column: span 4; grid-row: span 2; }
+      .gallery-item.size-tall   { grid-column: span 2; grid-row: span 4; }
     }
 
     .gallery-item img,
     .gallery-item-placeholder {
-      width: 100%;
+      width: 100%; height: 100%;
+      object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease;
     }
 
     .gallery-item-placeholder {
       background: linear-gradient(135deg, var(--blush) 0%, var(--sage) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 2.5rem;
-      border-radius: 3px;
     }
 
     .gallery-item:hover img,
-    .gallery-item:hover .gallery-item-placeholder { transform: scale(1.04); }
+    .gallery-item:hover .gallery-item-placeholder { transform: scale(1.06); }
 
     .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(61,43,31,0.75) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.35s;
-      display: flex;
-      align-items: flex-end;
-      padding: 1.2rem;
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(61,43,31,0.8) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.35s;
+      display: flex; align-items: flex-end; padding: 1rem;
     }
-
     .gallery-item:hover .gallery-overlay { opacity: 1; }
 
-    .gallery-overlay-text {
-      color: white;
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      font-weight: 300;
+    .gallery-overlay-text { color: white; font-family: var(--font-serif); font-size: 0.95rem; font-weight: 300; }
+    .gallery-overlay-tag { display: block; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blush); margin-top: 0.2rem; }
+
+    /* Category divider */
+    .gallery-category-divider {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      margin-top: 0.5rem;
     }
 
-    .gallery-overlay-tag {
-      display: inline-block;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
+    .gallery-category-divider::before,
+    .gallery-category-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--blush);
+      opacity: 0.5;
+    }
+
+    .gallery-category-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--blush);
-      margin-top: 0.2rem;
+      color: var(--rose);
+      white-space: nowrap;
+      font-weight: 500;
     }
 
     /* ===== SERVICES ===== */
@@ -542,7 +566,43 @@
       background: var(--deep);
       padding: 6rem 4rem;
       color: var(--cream);
+      position: relative;
+      overflow: hidden;
     }
+
+    /* Background image layer */
+    #services-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1s ease;
+      filter: blur(8px) saturate(0.7);
+      transform: scale(1.08); /* compensate blur edges */
+    }
+
+    #services-bg.loaded { opacity: 0.18; }
+
+    /* Dark overlay on top of bg image */
+    #services::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(61,43,31,0.92) 0%,
+        rgba(61,43,31,0.72) 30%,
+        rgba(61,43,31,0.72) 70%,
+        rgba(61,43,31,0.92) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #services .section-header,
+    .services-grid { position: relative; z-index: 2; }
 
     #services .section-title { color: var(--cream); }
 
@@ -561,6 +621,8 @@
       transition: var(--transition);
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(4px);
+      background: rgba(61,43,31,0.35);
     }
 
     .service-card::before {
@@ -575,39 +637,17 @@
 
     .service-card:hover {
       border-color: rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.06);
       transform: translateY(-4px);
       box-shadow: 0 16px 40px rgba(0,0,0,0.3);
     }
 
     .service-card:hover::before { transform: scaleX(1); }
 
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .service-title {
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
-      font-weight: 300;
-      color: var(--cream);
-      margin-bottom: 0.6rem;
-    }
-
-    .service-desc {
-      font-size: 0.85rem;
-      color: rgba(250,246,240,0.55);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    .service-tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--rose);
-    }
+    .service-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+    .service-title { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 300; color: var(--cream); margin-bottom: 0.6rem; }
+    .service-desc { font-size: 0.85rem; color: rgba(250,246,240,0.55); line-height: 1.7; margin-bottom: 1.5rem; }
+    .service-tag { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); }
 
     /* ===== ZONE SECTION ===== */
     #zone {
@@ -1225,13 +1265,14 @@
       <button class="filter-btn" data-filter="centros">Centros</button>
     </div>
 
-    <div class="gallery-masonry" id="galleryGrid">
+    <div class="gallery-mosaic-grid" id="galleryGrid">
       <!-- Populated by JS -->
     </div>
   </section>
 
   <!-- SERVICES -->
   <section id="services" aria-label="Servicios">
+    <div id="services-bg"></div>
     <div class="section-header fade-up">
       <p class="section-eyebrow" style="color:var(--blush)">✦ Lo que hago</p>
       <h2 class="section-title">Servicios <em>florales</em></h2>
@@ -1414,13 +1455,17 @@
 
     // ===== GALLERY FROM SUPABASE =====
     const defaultGallery = [
-      { emoji:'🌹', tag:'Ramos', label:'Ramo de rosas rojas', category:'ramos', height:280, bg:'linear-gradient(135deg,#e8c9b5,#c97b63)' },
-      { emoji:'💍', tag:'Bodas', label:'Bouquet de novia', category:'bodas', height:340, bg:'linear-gradient(135deg,#f0e6d3,#d4a8c7)' },
-      { emoji:'🌸', tag:'Regalos', label:'Ramo de regalo', category:'regalos', height:220, bg:'linear-gradient(135deg,#d4a8c7,#8ba888)' },
-      { emoji:'🌿', tag:'Centros', label:'Centro de mesa', category:'centros', height:300, bg:'linear-gradient(135deg,#8ba888,#4a5c43)' },
-      { emoji:'💐', tag:'Eventos', label:'Arreglo para evento', category:'eventos', height:260, bg:'linear-gradient(135deg,#b8a06a,#8ba888)' },
-      { emoji:'🌺', tag:'Ramos', label:'Ramo silvestre', category:'ramos', height:200, bg:'linear-gradient(135deg,#c97b63,#b8a06a)' },
+      { emoji:'🌹', tag:'Ramos', label:'Ramo de rosas rojas', category:'ramos', bg:'linear-gradient(135deg,#e8c9b5,#c97b63)' },
+      { emoji:'💍', tag:'Bodas', label:'Bouquet de novia', category:'bodas', bg:'linear-gradient(135deg,#f0e6d3,#d4a8c7)' },
+      { emoji:'🌸', tag:'Regalos', label:'Ramo de regalo', category:'regalos', bg:'linear-gradient(135deg,#d4a8c7,#8ba888)' },
+      { emoji:'🌿', tag:'Centros', label:'Centro de mesa', category:'centros', bg:'linear-gradient(135deg,#8ba888,#4a5c43)' },
+      { emoji:'💐', tag:'Eventos', label:'Arreglo para evento', category:'eventos', bg:'linear-gradient(135deg,#b8a06a,#8ba888)' },
+      { emoji:'🌺', tag:'Ramos', label:'Ramo silvestre', category:'ramos', bg:'linear-gradient(135deg,#c97b63,#b8a06a)' },
     ];
+
+    // Mosaic size pattern cycling
+    const SIZES = ['large','medium','small','tall','wide','medium','small','large','small','medium','wide','tall'];
+    const CATEGORY_LABELS = { ramos:'Ramos', bodas:'Bodas', eventos:'Eventos', regalos:'Regalos', centros:'Centros de mesa', otros:'Otros' };
 
     async function loadGallery() {
       const { data, error } = await sb.from('gallery').select('*').eq('active', true).order('created_at', { ascending: false });
@@ -1431,35 +1476,69 @@
     function renderGallery(filter = 'all') {
       activeFilter = filter;
       const grid = document.getElementById('galleryGrid');
-      const filtered = filter === 'all'
+
+      let items = filter === 'all'
         ? allGalleryItems
         : allGalleryItems.filter(i => i.category === filter);
 
-      if (!filtered.length) {
-        grid.innerHTML = '<p style="text-align:center;color:var(--text-light);padding:3rem;grid-column:1/-1">No hay fotos en esta categoría aún.</p>';
+      if (!items.length) {
+        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:3rem">No hay fotos en esta categoría aún.</p>';
         return;
       }
 
-      grid.innerHTML = filtered.map(item => {
-        const src = item.img_url || item.imgSrc || '';
-        const label = item.label || 'Arreglo floral';
-        const tag = item.tag || item.category;
-        return `
-          <div class="gallery-item fade-up" data-category="${item.category}" onclick="openLightbox('${src}','${label.replace(/'/g,"\\'")}')">
-            ${src
-              ? `<img src="${src}" alt="${label} · Seminare Flores Barcelona" loading="lazy" style="min-height:${item.height||250}px" />`
-              : `<div class="mosaic-placeholder" style="min-height:${item.height||250}px;background:${item.bg||'linear-gradient(135deg,#e8c9b5,#c97b63)'};border-radius:0">${item.emoji||'🌸'}</div>`
-            }
-            <div class="gallery-overlay">
-              <div>
-                <div class="gallery-overlay-text">${label}</div>
-                <div class="gallery-overlay-tag">${tag}</div>
-              </div>
-            </div>
-          </div>`;
-      }).join('');
+      // Group by category when showing all
+      let html = '';
+      if (filter === 'all') {
+        // Group items by category preserving order of first appearance
+        const groups = {};
+        const order = [];
+        items.forEach(item => {
+          const cat = item.category || 'otros';
+          if (!groups[cat]) { groups[cat] = []; order.push(cat); }
+          groups[cat].push(item);
+        });
 
+        let sizeIdx = 0;
+        order.forEach((cat, gi) => {
+          // Category divider (except first)
+          if (gi > 0) {
+            html += `<div class="gallery-category-divider">
+              <span class="gallery-category-label">✦ ${CATEGORY_LABELS[cat] || cat}</span>
+            </div>`;
+          }
+          groups[cat].forEach((item, i) => {
+            html += makeGalleryItem(item, SIZES[sizeIdx % SIZES.length]);
+            sizeIdx++;
+          });
+        });
+      } else {
+        items.forEach((item, i) => {
+          html += makeGalleryItem(item, SIZES[i % SIZES.length]);
+        });
+      }
+
+      grid.innerHTML = html;
       grid.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    }
+
+    function makeGalleryItem(item, size) {
+      const src = item.img_url || item.imgSrc || '';
+      const label = item.label || 'Arreglo floral';
+      const tag = item.tag || item.category;
+      const safeLabel = label.replace(/'/g, "\\'");
+      return `
+        <div class="gallery-item size-${size} fade-up" onclick="openLightbox('${src}','${safeLabel}')">
+          ${src
+            ? `<img src="${src}" alt="${label} · Seminare Flores" loading="lazy" />`
+            : `<div class="gallery-item-placeholder" style="background:${item.bg||'linear-gradient(135deg,#e8c9b5,#c97b63)'}">${item.emoji||'🌸'}</div>`
+          }
+          <div class="gallery-overlay">
+            <div>
+              <div class="gallery-overlay-text">${label}</div>
+              <div class="gallery-overlay-tag">${tag}</div>
+            </div>
+          </div>
+        </div>`;
     }
 
     // ===== GALLERY FILTERS =====
@@ -1486,7 +1565,7 @@
       const services = (!error && data?.length) ? data : defaultServices;
       const grid = document.getElementById('servicesGrid');
       grid.innerHTML = services.map(s => `
-        <div class="service-card fade-up" onclick="sendWaMessage('Hola! Me interesa el servicio de ${s.title} 🌸 ¿Me podés dar más información?')" style="cursor:pointer" title="Consultar por WhatsApp">
+        <div class="service-card fade-up" onclick="sendWaMessage('Hola! Me interesa el servicio de ${s.title} 🌸 ¿Me podés dar más información?')" style="cursor:pointer">
           <div class="service-icon">${s.icon}</div>
           <h3 class="service-title">${s.title}</h3>
           <p class="service-desc">${s.description || s.desc}</p>
@@ -1497,6 +1576,14 @@
           </div>
         </div>`).join('');
       grid.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+      // Load services background image from config
+      const { data: cfgData } = await sb.from('config').select('value').eq('key','services_bg').single();
+      if (cfgData?.value) {
+        const bg = document.getElementById('services-bg');
+        bg.style.backgroundImage = `url('${cfgData.value}')`;
+        setTimeout(() => bg.classList.add('loaded'), 100);
+      }
     }
 
     // ===== HERO PHOTOS FROM SUPABASE =====
