@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -467,48 +466,16 @@ CREATE POLICY "allow_delete" ON storage.objects FOR DELETE USING (bucket_id = 'g
 <div class="toast" id="toast"></div>
 
 <script>
-  // ===== LOCAL CONFIG =====
-  const LC = 'sf_cfg';
-  const getCfg = () => { try { return JSON.parse(localStorage.getItem(LC)) || {}; } catch { return {}; } };
-  const setCfg = d => localStorage.setItem(LC, JSON.stringify({ ...getCfg(), ...d }));
+  // ===== CREDENCIALES (fijas, no se borran nunca) =====
+  const SB_URL  = 'https://knxldignenywcbjbeejf.supabase.co';
+  const SB_KEY  = 'sb_publishable_y0D9piqxfK4idgj2mszecw_GGFNcEuw';
+  const ADMIN_PASS = 'Florencia2026*';
 
   let sb = null;
 
-  // ===== SETUP =====
-  function copySQL() {
-    navigator.clipboard.writeText(document.getElementById('sqlCode').textContent)
-      .then(() => showToast('SQL copiado. Pégalo en el SQL Editor de Supabase ✓'));
-  }
-
-  async function saveSetup() {
-    const url = document.getElementById('setupUrl').value.trim();
-    const key = document.getElementById('setupKey').value.trim();
-    const pass = document.getElementById('setupPassword').value;
-    const errEl = document.getElementById('setupError');
-    errEl.textContent = '';
-
-    if (!url || !key || !pass) { errEl.textContent = 'Completa todos los campos.'; return; }
-    if (!url.startsWith('https://')) { errEl.textContent = 'La URL debe empezar con https://'; return; }
-
-    sb = window.supabase.createClient(url, key);
-    try {
-      const { error } = await sb.from('config').select('key').limit(1);
-      if (error) throw error;
-    } catch (e) {
-      errEl.textContent = 'No se pudo conectar. Verifica las claves y que hayas ejecutado el SQL.';
-      return;
-    }
-
-    setCfg({ url, key, pass, ready: true });
-    document.getElementById('setupScreen').classList.add('hidden');
-    document.getElementById('loginScreen').classList.remove('hidden');
-    showToast('¡Conexión exitosa!', 'success');
-  }
-
   // ===== LOGIN =====
   function doLogin() {
-    const cfg = getCfg();
-    if (document.getElementById('loginPwd').value === cfg.pass) {
+    if (document.getElementById('loginPwd').value === ADMIN_PASS) {
       sessionStorage.setItem('sf_ok', '1');
       document.getElementById('loginScreen').classList.add('hidden');
       loadAll();
@@ -521,9 +488,9 @@ CREATE POLICY "allow_delete" ON storage.objects FOR DELETE USING (bucket_id = 'g
 
   // ===== INIT =====
   window.addEventListener('load', () => {
-    const cfg = getCfg();
-    if (!cfg.ready) { document.getElementById('setupScreen').classList.remove('hidden'); return; }
-    sb = window.supabase.createClient(cfg.url, cfg.key);
+    // Ocultar setup — ya no se necesita
+    document.getElementById('setupScreen').classList.add('hidden');
+    sb = window.supabase.createClient(SB_URL, SB_KEY);
     if (sessionStorage.getItem('sf_ok') === '1') { loadAll(); }
     else { document.getElementById('loginScreen').classList.remove('hidden'); }
   });
