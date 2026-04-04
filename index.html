@@ -576,6 +576,8 @@
     .service-card:hover {
       border-color: rgba(255,255,255,0.2);
       background: rgba(255,255,255,0.04);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
     }
 
     .service-card:hover::before { transform: scaleX(1); }
@@ -1162,11 +1164,11 @@
 
     <div class="hero-right">
       <div class="hero-mosaic" id="heroMosaic">
-        <!-- Populated by JS or admin photos -->
+        <!-- Populated by loadHeroPhotos() from Supabase -->
         <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px">🌹</div></div>
-        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px; background: linear-gradient(135deg, #d4a8c7, #8ba888)">🌸</div></div>
-        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px; background: linear-gradient(135deg, #8ba888, #e8c9b5)">🌿</div></div>
-        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px; background: linear-gradient(135deg, #b8a06a, #c97b63)">💐</div></div>
+        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px;background:linear-gradient(135deg,#d4a8c7,#8ba888)">🌸</div></div>
+        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px;background:linear-gradient(135deg,#8ba888,#e8c9b5)">🌿</div></div>
+        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px;background:linear-gradient(135deg,#b8a06a,#c97b63)">💐</div></div>
       </div>
     </div>
   </section>
@@ -1366,7 +1368,7 @@
     const sb = window.supabase.createClient(SB_URL, SB_KEY);
 
     // ===== WHATSAPP =====
-    let WA_PHONE = '+393534597855';
+    let WA_PHONE = '34600000000';
     let waOpen = false;
     let allGalleryItems = [];
     let activeFilter = 'all';
@@ -1392,7 +1394,7 @@
 
     // ===== PAGE LOADER =====
     window.addEventListener('load', async () => {
-      await Promise.all([loadGallery(), loadServices(), loadWaConfig()]);
+      await Promise.all([loadGallery(), loadServices(), loadWaConfig(), loadHeroPhotos()]);
       renderIgFeed();
       setTimeout(() => document.getElementById('pageLoader').classList.add('hidden'), 400);
       if (!sessionStorage.getItem('wa_shown')) {
@@ -1484,13 +1486,39 @@
       const services = (!error && data?.length) ? data : defaultServices;
       const grid = document.getElementById('servicesGrid');
       grid.innerHTML = services.map(s => `
-        <div class="service-card fade-up">
+        <div class="service-card fade-up" onclick="sendWaMessage('Hola! Me interesa el servicio de ${s.title} 🌸 ¿Me podés dar más información?')" style="cursor:pointer" title="Consultar por WhatsApp">
           <div class="service-icon">${s.icon}</div>
           <h3 class="service-title">${s.title}</h3>
           <p class="service-desc">${s.description || s.desc}</p>
           <span class="service-tag">${s.tag}</span>
+          <div style="margin-top:1.2rem;display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,246,240,0.4);">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(250,246,240,0.4)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.528 5.845L.057 23.493a.5.5 0 0 0 .602.63l5.826-1.524A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.51-5.17-1.399l-.37-.216-3.823 1.002 1.017-3.727-.238-.38A9.944 9.944 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Consultar por WhatsApp
+          </div>
         </div>`).join('');
       grid.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    }
+
+    // ===== HERO PHOTOS FROM SUPABASE =====
+    async function loadHeroPhotos() {
+      const { data } = await sb.from('hero_photos').select('*').eq('active', true).order('sort_order').limit(4);
+      const mosaic = document.getElementById('heroMosaic');
+      const bgs = [
+        'linear-gradient(135deg,#e8c9b5,#c97b63)',
+        'linear-gradient(135deg,#d4a8c7,#8ba888)',
+        'linear-gradient(135deg,#8ba888,#e8c9b5)',
+        'linear-gradient(135deg,#b8a06a,#c97b63)',
+      ];
+      const emojis = ['🌹','🌸','🌿','💐'];
+      // Fill 4 slots — use DB photos where available, placeholder otherwise
+      const slots = [0,1,2,3].map(i => data?.[i] || null);
+      mosaic.innerHTML = slots.map((item, i) => `
+        <div class="mosaic-cell">
+          ${item?.img_url
+            ? `<img src="${item.img_url}" alt="Seminare Flores" style="width:100%;height:100%;object-fit:cover;transition:transform 0.8s ease" />`
+            : `<div class="mosaic-placeholder" style="min-height:200px;background:${bgs[i]}">${emojis[i]}</div>`
+          }
+        </div>`).join('');
     }
 
     // ===== WA CONFIG FROM SUPABASE =====
