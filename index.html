@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== SEO PRIMARY ===== -->
+  <title>Seminare Flores | Ramos y Arreglos Florales en Barcelona</title>
+  <meta name="description" content="Ramos de flores y arreglos florales a pedido en Barcelona y 50 km. Diseños únicos para bodas, eventos, regalos y ocasiones especiales. Encarga el tuyo por WhatsApp." />
+  <meta name="keywords" content="ramos de flores Barcelona, arreglos florales Barcelona, floristería Barcelona, flores a pedido Barcelona, ramos boda Barcelona, regalos florales Barcelona, flores Sant Cugat, flores Badalona, flores L'Hospitalet, flores Sabadell, Seminare Flores" />
+  <meta name="author" content="Seminare Flores" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://seminare-flores.vercel.app/" />
+
+  <!-- ===== GEO SEO ===== -->
+  <meta name="geo.region" content="ES-CT" />
+  <meta name="geo.placename" content="Barcelona" />
+  <meta name="geo.position" content="41.3851;2.1734" />
+  <meta name="ICBM" content="41.3851, 2.1734" />
+
+  <!-- ===== OPEN GRAPH ===== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seminare-flores.vercel.app/" />
+  <meta property="og:title" content="Seminare Flores | Ramos y Arreglos Florales en Barcelona" />
+  <meta property="og:description" content="Diseños florales únicos a pedido en Barcelona y alrededores. Bodas, eventos, regalos y mucho más." />
+  <meta property="og:image" content="https://seminare-flores.vercel.app/images/og-cover.jpg" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="Seminare Flores" />
+
+  <!-- ===== TWITTER CARD ===== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Seminare Flores | Ramos y Arreglos Florales en Barcelona" />
+  <meta name="twitter:description" content="Diseños florales únicos a pedido en Barcelona y alrededores." />
+  <meta name="twitter:image" content="https://seminare-flores.vercel.app/images/og-cover.jpg" />
+
+  <!-- ===== SCHEMA.ORG LOCAL BUSINESS ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Florist",
+    "name": "Seminare Flores",
+    "description": "Ramos de flores y arreglos florales a pedido en Barcelona y 50 km de periferia. Diseños únicos para bodas, eventos y regalos.",
+    "url": "https://seminare-flores.vercel.app",
+    "telephone": "+34600000000",
+    "priceRange": "€€",
+    "image": "https://seminare-flores.vercel.app/images/og-cover.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Barcelona",
+      "addressRegion": "Cataluña",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.3851,
+      "longitude": 2.1734
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.3851,
+        "longitude": 2.1734
+      },
+      "geoRadius": "50000"
+    },
+    "sameAs": [
+      "https://www.instagram.com/seminare.flores"
+    ],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios Florales",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ramos a pedido"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Arreglos para bodas"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Decoración de eventos"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Regalos florales personalizados"}}
+      ]
+    }
+  }
+  </script>
+
+  <!-- ===== FONTS ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --cream: #FAF6F0;
+      --blush: #E8C9B5;
+      --rose: #C97B63;
+      --deep: #3D2B1F;
+      --forest: #4A5C43;
+      --sage: #8BA888;
+      --gold: #B8A06A;
+      --white: #FFFFFF;
+      --text: #2C1F17;
+      --text-light: #7A6358;
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Jost', sans-serif;
+
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--blush); border-radius: 3px; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      transition: var(--transition);
+    }
+
+    nav.scrolled {
+      background: rgba(250,246,240,0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(61,43,31,0.08);
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--deep);
+      text-decoration: none;
+      font-style: italic;
+    }
+
+    .nav-logo span { color: var(--rose); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--rose); }
+
+    .nav-ig {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-ig:hover { color: var(--rose); }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 4rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--deep);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 380px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--rose);
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(61,43,31,0.2);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid var(--blush);
+      color: var(--text-light);
+      padding: 0.9rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: var(--transition);
+    }
+    .btn-outline:hover { border-color: var(--rose); color: var(--rose); }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 3rem;
+      left: 6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-mosaic {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+    }
+
+    .mosaic-cell {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mosaic-cell img,
+    .mosaic-placeholder {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .mosaic-cell:hover img { transform: scale(1.05); }
+
+    .mosaic-placeholder {
+      background: linear-gradient(135deg, var(--blush), var(--sage));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    /* gradient overlay from left side */
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 80px;
+      background: linear-gradient(to right, var(--cream), transparent);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ===== DECORATIVE ELEMENTS ===== */
+    .leaf-decor {
+      position: absolute;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      color: var(--deep);
+      line-height: 1.2;
+    }
+
+    .section-title em { font-style: italic; color: var(--rose); }
+
+    .section-line {
+      width: 60px;
+      height: 1px;
+      background: var(--blush);
+      margin: 1.2rem auto 0;
+    }
+
+    /* ===== ABOUT STRIP ===== */
+    #about-strip {
+      background: var(--deep);
+      color: var(--cream);
+      padding: 2rem 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .strip-icon {
+      font-size: 1.4rem;
+    }
+
+    .strip-text strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    .strip-text span {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blush);
+      opacity: 0.7;
+    }
+
+    .strip-divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* ===== GALLERY ===== */
+    #gallery {
+      padding: 6rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.4rem;
+      border: 1px solid var(--blush);
+      background: transparent;
+      border-radius: 100px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: white;
+    }
+
+    /* ===== MOSAIC GALLERY GRID ===== */
+    .gallery-mosaic-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 80px;
+      gap: 8px;
+    }
+
+    /* Size patterns cycling: large, medium, small */
+    .gallery-item { position: relative; overflow: hidden; border-radius: 6px; cursor: pointer; }
+    .gallery-item.size-large  { grid-column: span 6; grid-row: span 4; }
+    .gallery-item.size-medium { grid-column: span 4; grid-row: span 3; }
+    .gallery-item.size-small  { grid-column: span 3; grid-row: span 2; }
+    .gallery-item.size-wide   { grid-column: span 8; grid-row: span 3; }
+    .gallery-item.size-tall   { grid-column: span 3; grid-row: span 4; }
+
+    @media (max-width: 900px) {
+      .gallery-mosaic-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 70px; }
+      .gallery-item.size-large  { grid-column: span 4; grid-row: span 4; }
+      .gallery-item.size-medium { grid-column: span 3; grid-row: span 3; }
+      .gallery-item.size-small  { grid-column: span 2; grid-row: span 2; }
+      .gallery-item.size-wide   { grid-column: span 5; grid-row: span 3; }
+      .gallery-item.size-tall   { grid-column: span 2; grid-row: span 4; }
+    }
+
+    @media (max-width: 540px) {
+      .gallery-mosaic-grid { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 65px; }
+      .gallery-item.size-large  { grid-column: span 3; grid-row: span 3; }
+      .gallery-item.size-medium { grid-column: span 2; grid-row: span 3; }
+      .gallery-item.size-small  { grid-column: span 2; grid-row: span 2; }
+      .gallery-item.size-wide   { grid-column: span 4; grid-row: span 2; }
+      .gallery-item.size-tall   { grid-column: span 2; grid-row: span 4; }
+    }
+
+    .gallery-item img,
+    .gallery-item-placeholder {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item-placeholder {
+      background: linear-gradient(135deg, var(--blush) 0%, var(--sage) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .gallery-item:hover img,
+    .gallery-item:hover .gallery-item-placeholder { transform: scale(1.06); }
+
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(61,43,31,0.8) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.35s;
+      display: flex; align-items: flex-end; padding: 1rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay-text { color: white; font-family: var(--font-serif); font-size: 0.95rem; font-weight: 300; }
+    .gallery-overlay-tag { display: block; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blush); margin-top: 0.2rem; }
+
+    /* Category divider */
+    .gallery-category-divider {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      margin-top: 0.5rem;
+    }
+
+    .gallery-category-divider::before,
+    .gallery-category-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--blush);
+      opacity: 0.5;
+    }
+
+    .gallery-category-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--rose);
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    /* ===== SERVICES ===== */
+    #services {
+      background: var(--deep);
+      padding: 6rem 4rem;
+      color: var(--cream);
+      position: relative;
+    }
+
+    #services .section-title { color: var(--cream); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Each card has its own background photo */
+    .service-card {
+      border-radius: 8px;
+      padding: 0;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    /* Photo layer inside card */
+    .service-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--deep);
+      transition: transform 0.6s ease;
+      filter: saturate(0.85);
+    }
+
+    .service-card:hover .service-card-bg { transform: scale(1.05); }
+
+    /* Gradient overlay so text is readable */
+    .service-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(30,18,10,0.92) 0%,
+        rgba(30,18,10,0.55) 50%,
+        rgba(30,18,10,0.20) 100%
+      );
+      transition: background 0.4s;
+    }
+
+    .service-card:hover .service-card-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(201,123,99,0.88) 0%,
+        rgba(61,43,31,0.65) 50%,
+        rgba(30,18,10,0.25) 100%
+      );
+    }
+
+    /* Top accent line on hover */
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--rose), var(--gold));
+      transform: scaleX(0);
+      transition: transform 0.4s;
+      z-index: 3;
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    /* Text content */
+    .service-card-content {
+      position: relative;
+      z-index: 2;
+      padding: 1.8rem;
+    }
+
+    .service-icon { font-size: 1.8rem; margin-bottom: 0.8rem; display: block; }
+    .service-title { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 300; color: white; margin-bottom: 0.5rem; line-height: 1.2; }
+    .service-desc { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.65; margin-bottom: 1rem; }
+    .service-tag { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blush); }
+    .service-wa-hint { margin-top: 1rem; display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.3s; }
+    .service-card:hover .service-wa-hint { color: rgba(255,255,255,0.85); }
+
+    /* ===== ZONE SECTION ===== */
+    #zone {
+      padding: 6rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .zone-text h2 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--deep);
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+    }
+
+    .zone-text h2 em { font-style: italic; color: var(--rose); }
+
+    .zone-text p {
+      color: var(--text-light);
+      line-height: 1.8;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .zone-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .zone-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    .zone-list li::before {
+      content: '◈';
+      color: var(--rose);
+      font-size: 0.6rem;
+    }
+
+    .map-embed {
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(61,43,31,0.12);
+      aspect-ratio: 1;
+    }
+
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ===== INSTAGRAM SECTION ===== */
+    #instagram {
+      background: var(--deep);
+      padding: 5rem 4rem;
+      text-align: center;
+      color: var(--cream);
+    }
+
+    #instagram .section-title { color: var(--cream); }
+    #instagram .section-eyebrow { color: var(--blush); }
+    #instagram .section-line { background: rgba(255,255,255,0.15); }
+
+    .ig-feed-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      max-width: 900px;
+      margin: 2.5rem auto;
+    }
+
+    @media (max-width: 600px) {
+      .ig-feed-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .ig-item {
+      aspect-ratio: 9/16;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      border-radius: 8px;
+      background: #1a1a1a;
+    }
+
+    .ig-item video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .ig-item:hover video { transform: scale(1.03); }
+
+    .ig-item-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--blush), var(--sage));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: white;
+    }
+
+    .ig-item-placeholder span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .ig-item .ig-hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(201,123,99,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: white;
+      font-size: 1.5rem;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .ig-item .ig-hover span {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .ig-item:hover .ig-hover { opacity: 1; }
+
+    .ig-cta { margin-top: 1.5rem; }
+
+    .btn-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: all 0.3s;
+      box-shadow: 0 8px 24px rgba(220,39,67,0.3);
+    }
+
+    .btn-ig:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(220,39,67,0.4);
+    }
+
+    /* ===== CONTACT / WHATSAPP ===== */
+    #contact {
+      background: linear-gradient(135deg, var(--rose) 0%, var(--deep) 100%);
+      padding: 6rem 4rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contact::before {
+      content: '✿';
+      position: absolute;
+      font-size: 20rem;
+      opacity: 0.04;
+      top: -4rem;
+      right: -4rem;
+      pointer-events: none;
+    }
+
+    .contact-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .contact-sub {
+      font-size: 1rem;
+      opacity: 0.75;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #25D366;
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: var(--transition);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      background: #1eab53;
+    }
+
+    .btn-whatsapp svg { width: 22px; height: 22px; fill: white; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--deep);
+      color: var(--cream);
+      padding: 3rem 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+    }
+
+    .footer-logo span { color: var(--rose); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(250,246,240,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--rose); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(250,246,240,0.3);
+    }
+
+    /* ===== FLOATING WA BUTTON ===== */
+    .wa-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+    }
+
+    .wa-float-btn {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      transition: var(--transition);
+      border: none;
+    }
+
+    .wa-float-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 40px rgba(37,211,102,0.5);
+    }
+
+    .wa-float-btn svg { width: 30px; height: 30px; fill: white; }
+
+    .wa-bubble-badge {
+      position: absolute;
+      top: -4px; right: -4px;
+      width: 20px; height: 20px;
+      background: var(--rose);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: white;
+      font-weight: 700;
+      animation: pulse-badge 2s infinite;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* ===== WHATSAPP CHAT POPUP ===== */
+    .wa-popup {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 2rem;
+      width: 320px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      z-index: 1000;
+      overflow: hidden;
+      transform: translateY(20px) scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .wa-popup.open {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .wa-popup-header {
+      background: #075e54;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .wa-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blush), var(--rose));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .wa-header-info strong {
+      display: block;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    .wa-header-info span {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .wa-popup-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 0.3rem;
+      transition: color 0.2s;
+    }
+    .wa-popup-close:hover { color: white; }
+
+    .wa-popup-body {
+      padding: 1.2rem;
+      background: #ece5dd;
+      min-height: 140px;
+    }
+
+    .wa-message-bubble {
+      background: white;
+      border-radius: 8px 8px 8px 0;
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: #303030;
+      max-width: 85%;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+
+    .wa-message-time {
+      font-size: 0.65rem;
+      color: rgba(0,0,0,0.4);
+      text-align: right;
+      margin-top: 0.3rem;
+    }
+
+    .wa-popup-options {
+      padding: 0.8rem 1.2rem 1.2rem;
+      background: #ece5dd;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .wa-option {
+      background: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.65rem 1rem;
+      font-size: 0.8rem;
+      color: #075e54;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .wa-option:hover { background: #d9f0e6; }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ===== PAGE LOADER ===== */
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+
+    .page-loader.hidden { opacity: 0; visibility: hidden; }
+
+    .loader-logo {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--deep);
+    }
+    .loader-logo span { color: var(--rose); }
+
+    .loader-bar {
+      width: 120px;
+      height: 1px;
+      background: var(--blush);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-bar::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--rose);
+      animation: loader-slide 1s ease forwards;
+    }
+
+    @keyframes loader-slide {
+      to { left: 0; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 55vw; position: relative; }
+      .hero-left { padding: 7rem 2rem 3rem; }
+      .hero-badge { left: 2rem; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #about-strip { padding: 1.5rem 2rem; }
+      #gallery { padding: 4rem 1.5rem; }
+      #services { padding: 4rem 1.5rem; }
+      #zone { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2rem; }
+      #instagram { padding: 4rem 1.5rem; }
+      .ig-feed-grid { grid-template-columns: repeat(3, 1fr); }
+      #contact { padding: 4rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .ig-feed-grid { grid-template-columns: repeat(2, 1fr); }
+      .wa-popup { width: calc(100vw - 2rem); right: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE LOADER -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-logo">Seminare <span>Flores</span></div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav id="mainNav">
+    <a href="#" class="nav-logo">Seminare <span>Flores</span></a>
+    <ul class="nav-links">
+      <li><a href="#gallery">Galería</a></li>
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#zone">Zona</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+    <a href="https://www.instagram.com/seminare.flores?igsh=MWphemhnd2pwMWNoMg==" target="_blank" rel="noopener" class="nav-ig">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @seminare.flores
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" aria-label="Inicio">
+    <div class="hero-left">
+      <p class="hero-eyebrow">✦ Florista en Barcelona</p>
+      <h1 class="hero-title">Flores que<br/>cuentan <em>tu</em><br/>historia</h1>
+      <p class="hero-subtitle">Ramos y arreglos florales hechos a mano con amor, a pedido. Para bodas, eventos y cada momento especial.</p>
+      <div class="hero-actions">
+        <a href="#waChat" class="btn-primary" onclick="openWaPopup(event)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.528 5.845L.057 23.493a.5.5 0 0 0 .602.63l5.826-1.524A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.51-5.17-1.399l-.37-.216-3.823 1.002 1.017-3.727-.238-.38A9.944 9.944 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Pedir por WhatsApp
+        </a>
+        <a href="#gallery" class="btn-outline">Ver galería</a>
+      </div>
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        <span>Barcelona y 50 km a la redonda</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-mosaic" id="heroMosaic">
+        <!-- Populated by loadHeroPhotos() from Supabase -->
+        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px">🌹</div></div>
+        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px;background:linear-gradient(135deg,#d4a8c7,#8ba888)">🌸</div></div>
+        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px;background:linear-gradient(135deg,#8ba888,#e8c9b5)">🌿</div></div>
+        <div class="mosaic-cell"><div class="mosaic-placeholder" style="min-height:200px;background:linear-gradient(135deg,#b8a06a,#c97b63)">💐</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT STRIP -->
+  <div id="about-strip" aria-label="Información rápida">
+    <div class="strip-item">
+      <div class="strip-icon">🌸</div>
+      <div class="strip-text">
+        <strong>A pedido</strong>
+        <span>Cada ramo es único</span>
+      </div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <div class="strip-icon">📍</div>
+      <div class="strip-text">
+        <strong>Barcelona</strong>
+        <span>y 50 km alrededor</span>
+      </div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <div class="strip-icon">💬</div>
+      <div class="strip-text">
+        <strong>WhatsApp</strong>
+        <span>Respuesta rápida</span>
+      </div>
+    </div>
+    <div class="strip-divider"></div>
+    <div class="strip-item">
+      <div class="strip-icon">🎀</div>
+      <div class="strip-text">
+        <strong>Bodas & Eventos</strong>
+        <span>Diseños personalizados</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section id="gallery" aria-label="Galería de trabajos">
+    <div class="section-header fade-up">
+      <p class="section-eyebrow">✦ Mis trabajos</p>
+      <h2 class="section-title">Una galería de<br/><em>momentos florales</em></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="gallery-filters fade-up" id="galleryFilters">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="ramos">Ramos</button>
+      <button class="filter-btn" data-filter="bodas">Bodas</button>
+      <button class="filter-btn" data-filter="eventos">Eventos</button>
+      <button class="filter-btn" data-filter="regalos">Regalos</button>
+      <button class="filter-btn" data-filter="centros">Centros</button>
+    </div>
+
+    <div class="gallery-mosaic-grid" id="galleryGrid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" aria-label="Servicios">
+    <div class="section-header fade-up">
+      <p class="section-eyebrow" style="color:var(--blush)">✦ Lo que hago</p>
+      <h2 class="section-title">Servicios <em>florales</em></h2>
+      <div class="section-line" style="background:rgba(255,255,255,0.15)"></div>
+    </div>
+    <div class="services-grid" id="servicesGrid"></div>
+  </section>
+
+  <!-- ZONE + MAP -->
+  <section id="zone" aria-label="Zona de cobertura">
+    <div class="zone-text fade-up">
+      <p class="section-eyebrow">✦ Dónde trabajo</p>
+      <h2>Barcelona y toda la<br/><em>región metropolitana</em></h2>
+      <p>Trabajo a pedido en Barcelona y hasta 50 km a la redonda. ¿No estás segura si llego a tu zona? Escríbeme y lo vemos juntas.</p>
+      <ul class="zone-list">
+        <li>Barcelona ciudad</li>
+        <li>Badalona</li>
+        <li>L'Hospitalet</li>
+        <li>Sabadell</li>
+        <li>Terrassa</li>
+        <li>Sant Cugat</li>
+        <li>Mataró</li>
+        <li>Cornellà</li>
+        <li>Castelldefels</li>
+        <li>Mollet del Vallès</li>
+        <li>Granollers</li>
+        <li>Vilanova i la G.</li>
+      </ul>
+      <a href="#" class="btn-primary" onclick="openWaPopup(event)" style="margin-top:0.5rem; display:inline-flex">
+        Consultar disponibilidad
+      </a>
+    </div>
+    <div class="map-embed fade-up">
+      <iframe
+        title="Zona de cobertura Seminare Flores Barcelona"
+        src="https://maps.google.com/maps?q=Barcelona,Catalonia,Spain&z=10&output=embed"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        aria-label="Mapa de la zona de servicio">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section id="instagram" aria-label="Instagram">
+    <div class="section-header fade-up">
+      <p class="section-eyebrow">✦ Instagram</p>
+      <h2 class="section-title">Mirá mis <em>videos</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="ig-feed-grid fade-up" id="igFeed"></div>
+    <div class="ig-cta fade-up">
+      <a href="https://www.instagram.com/seminare.flores?igsh=MWphemhnd2pwMWNoMg==" target="_blank" rel="noopener" class="btn-ig">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4" fill="transparent" stroke="white" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.2" fill="white"/></svg>
+        Seguime en @seminare.flores
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-label="Contacto">
+    <h2 class="contact-title">¿Lista para crear<br/>algo hermoso?</h2>
+    <p class="contact-sub">Cuéntame tu idea y diseñamos juntas el arreglo floral perfecto para tu momento especial.</p>
+    <a href="#" class="btn-whatsapp" onclick="openWaPopup(event)">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.528 5.845L.057 23.493a.5.5 0 0 0 .602.63l5.826-1.524A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.51-5.17-1.399l-.37-.216-3.823 1.002 1.017-3.727-.238-.38A9.944 9.944 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Seminare <span>Flores</span></div>
+    <ul class="footer-links">
+      <li><a href="#gallery">Galería</a></li>
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#zone">Zona</a></li>
+      <li><a href="https://www.instagram.com/seminare.flores?igsh=MWphemhnd2pwMWNoMg==" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="admin.html">Panel</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Seminare Flores · Barcelona</p>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <div class="wa-float">
+    <div class="wa-bubble-badge">1</div>
+    <button class="wa-float-btn" onclick="toggleWaPopup()" aria-label="Abrir chat de WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.528 5.845L.057 23.493a.5.5 0 0 0 .602.63l5.826-1.524A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.51-5.17-1.399l-.37-.216-3.823 1.002 1.017-3.727-.238-.38A9.944 9.944 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    </button>
+  </div>
+
+  <!-- WHATSAPP CHAT POPUP -->
+  <div class="wa-popup" id="waPopup" role="dialog" aria-modal="true" aria-label="Chat de WhatsApp">
+    <div class="wa-popup-header">
+      <div class="wa-avatar">🌸</div>
+      <div class="wa-header-info">
+        <strong>Seminare Flores</strong>
+        <span>🟢 En línea · Responde rápido</span>
+      </div>
+      <button class="wa-popup-close" onclick="closeWaPopup()" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="wa-popup-body">
+      <div class="wa-message-bubble">
+        ¡Hola! 👋 Bienvenida a <strong>Seminare Flores</strong>.<br/><br/>
+        Hago ramos y arreglos florales a pedido en Barcelona y alrededores. 🌹<br/><br/>
+        ¿En qué puedo ayudarte hoy?
+        <div class="wa-message-time">Ahora</div>
+      </div>
+    </div>
+    <div class="wa-popup-options">
+      <button class="wa-option" onclick="sendWaMessage('💍 Quiero flores para una boda')">💍 Flores para una boda</button>
+      <button class="wa-option" onclick="sendWaMessage('🎁 Busco un ramo de regalo')">🎁 Ramo de regalo especial</button>
+      <button class="wa-option" onclick="sendWaMessage('🎉 Necesito decoración para un evento')">🎉 Decoración de eventos</button>
+      <button class="wa-option" onclick="sendWaMessage('💐 Quiero ver precios y disponibilidad')">💐 Precios y disponibilidad</button>
+      <button class="wa-option" onclick="sendWaMessage('📸 Tengo una idea y quiero consultarla')">📸 Tengo una idea personalizada</button>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar imagen">✕</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // ===== SUPABASE =====
+    const SB_URL = 'https://knxldignenywcbjbeejf.supabase.co';
+    const SB_KEY = 'sb_publishable_y0D9piqxfK4idgj2mszecw_GGFNcEuw';
+    const sb = window.supabase.createClient(SB_URL, SB_KEY);
+
+    // ===== WHATSAPP =====
+    let WA_PHONE = '393534597855';
+    let waOpen = false;
+    let allGalleryItems = [];
+    let activeFilter = 'all';
+
+    function toggleWaPopup() { waOpen ? closeWaPopup() : openWaPopup(); }
+
+    function openWaPopup(e) {
+      if (e) e.preventDefault();
+      document.getElementById('waPopup').classList.add('open');
+      document.querySelector('.wa-bubble-badge').style.display = 'none';
+      waOpen = true;
+    }
+
+    function closeWaPopup() {
+      document.getElementById('waPopup').classList.remove('open');
+      waOpen = false;
+    }
+
+    function sendWaMessage(msg) {
+      window.open(`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+      closeWaPopup();
+    }
+
+    // ===== PAGE LOADER =====
+    window.addEventListener('load', async () => {
+      await Promise.all([loadGallery(), loadServices(), loadWaConfig(), loadHeroPhotos(), renderIgFeed()]);
+      renderIgFeed();
+      setTimeout(() => document.getElementById('pageLoader').classList.add('hidden'), 400);
+      if (!sessionStorage.getItem('wa_shown')) {
+        setTimeout(() => { openWaPopup(); sessionStorage.setItem('wa_shown','1'); }, 5000);
+      }
+    });
+
+    // ===== NAV SCROLL =====
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+    // ===== SCROLL ANIMATIONS =====
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ===== GALLERY FROM SUPABASE =====
+    const defaultGallery = [
+      { emoji:'🌹', tag:'Ramos', label:'Ramo de rosas rojas', category:'ramos', bg:'linear-gradient(135deg,#e8c9b5,#c97b63)' },
+      { emoji:'💍', tag:'Bodas', label:'Bouquet de novia', category:'bodas', bg:'linear-gradient(135deg,#f0e6d3,#d4a8c7)' },
+      { emoji:'🌸', tag:'Regalos', label:'Ramo de regalo', category:'regalos', bg:'linear-gradient(135deg,#d4a8c7,#8ba888)' },
+      { emoji:'🌿', tag:'Centros', label:'Centro de mesa', category:'centros', bg:'linear-gradient(135deg,#8ba888,#4a5c43)' },
+      { emoji:'💐', tag:'Eventos', label:'Arreglo para evento', category:'eventos', bg:'linear-gradient(135deg,#b8a06a,#8ba888)' },
+      { emoji:'🌺', tag:'Ramos', label:'Ramo silvestre', category:'ramos', bg:'linear-gradient(135deg,#c97b63,#b8a06a)' },
+    ];
+
+    // Mosaic size pattern cycling
+    const SIZES = ['large','medium','small','tall','wide','medium','small','large','small','medium','wide','tall'];
+    const CATEGORY_LABELS = { ramos:'Ramos', bodas:'Bodas', eventos:'Eventos', regalos:'Regalos', centros:'Centros de mesa', otros:'Otros' };
+
+    async function loadGallery() {
+      const { data, error } = await sb.from('gallery').select('*').eq('active', true).order('created_at', { ascending: false });
+      allGalleryItems = (!error && data?.length) ? data : defaultGallery;
+      renderGallery(activeFilter);
+    }
+
+    function renderGallery(filter = 'all') {
+      activeFilter = filter;
+      const grid = document.getElementById('galleryGrid');
+
+      let items = filter === 'all'
+        ? allGalleryItems
+        : allGalleryItems.filter(i => i.category === filter);
+
+      if (!items.length) {
+        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-light);padding:3rem">No hay fotos en esta categoría aún.</p>';
+        return;
+      }
+
+      // Group by category when showing all
+      let html = '';
+      if (filter === 'all') {
+        // Group items by category preserving order of first appearance
+        const groups = {};
+        const order = [];
+        items.forEach(item => {
+          const cat = item.category || 'otros';
+          if (!groups[cat]) { groups[cat] = []; order.push(cat); }
+          groups[cat].push(item);
+        });
+
+        let sizeIdx = 0;
+        order.forEach((cat, gi) => {
+          // Category divider (except first)
+          if (gi > 0) {
+            html += `<div class="gallery-category-divider">
+              <span class="gallery-category-label">✦ ${CATEGORY_LABELS[cat] || cat}</span>
+            </div>`;
+          }
+          groups[cat].forEach((item, i) => {
+            html += makeGalleryItem(item, SIZES[sizeIdx % SIZES.length]);
+            sizeIdx++;
+          });
+        });
+      } else {
+        items.forEach((item, i) => {
+          html += makeGalleryItem(item, SIZES[i % SIZES.length]);
+        });
+      }
+
+      grid.innerHTML = html;
+      grid.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    }
+
+    function makeGalleryItem(item, size) {
+      const src = item.img_url || item.imgSrc || '';
+      const label = item.label || 'Arreglo floral';
+      const tag = item.tag || item.category;
+      const safeLabel = label.replace(/'/g, "\\'");
+      return `
+        <div class="gallery-item size-${size} fade-up" onclick="openLightbox('${src}','${safeLabel}')">
+          ${src
+            ? `<img src="${src}" alt="${label} · Seminare Flores" loading="lazy" />`
+            : `<div class="gallery-item-placeholder" style="background:${item.bg||'linear-gradient(135deg,#e8c9b5,#c97b63)'}">${item.emoji||'🌸'}</div>`
+          }
+          <div class="gallery-overlay">
+            <div>
+              <div class="gallery-overlay-text">${label}</div>
+              <div class="gallery-overlay-tag">${tag}</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    // ===== GALLERY FILTERS =====
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGallery(btn.dataset.filter);
+      });
+    });
+
+    // ===== SERVICES FROM SUPABASE =====
+    const defaultServices = [
+      { icon:'💍', title:'Bodas', description:'Ramos de novia, centros de mesa, arcos florales y decoración completa.', tag:'Consulta previa' },
+      { icon:'🎉', title:'Eventos', description:'Decoración floral para fiestas, cumpleaños, comuniones y bautizos.', tag:'A medida' },
+      { icon:'🎁', title:'Ramos regalo', description:'El regalo perfecto para aniversarios, San Valentín o Día de la Madre.', tag:'Entrega en la zona' },
+      { icon:'🌿', title:'Arreglos de hogar', description:'Centros y arreglos con flores frescas de temporada para tu hogar.', tag:'Flores de temporada' },
+      { icon:'🤍', title:'Condolencias', description:'Coronas y centros florales con discreción y cariño.', tag:'Entrega discreta' },
+      { icon:'✨', title:'Diseños personalizados', description:'Tienes una idea. Cuéntamela y juntas la hacemos realidad.', tag:'A pedido' },
+    ];
+
+    async function loadServices() {
+      const { data, error } = await sb.from('services').select('*').eq('active', true).order('sort_order');
+      const services = (!error && data?.length) ? data : defaultServices;
+      const grid = document.getElementById('servicesGrid');
+
+      grid.innerHTML = services.map(s => {
+        const bgStyle = s.img_url
+          ? `background-image:url('${s.img_url}')`
+          : `background:linear-gradient(135deg, var(--deep) 0%, #5a3a28 100%)`;
+        return `
+          <div class="service-card fade-up" onclick="sendWaMessage('Hola! Me interesa el servicio de ${s.title} 🌸 ¿Me podés dar más información?')">
+            <div class="service-card-bg" style="${bgStyle}"></div>
+            <div class="service-card-overlay"></div>
+            <div class="service-card-content">
+              <span class="service-icon">${s.icon}</span>
+              <h3 class="service-title">${s.title}</h3>
+              <p class="service-desc">${s.description || s.desc}</p>
+              <span class="service-tag">${s.tag}</span>
+              <div class="service-wa-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.528 5.845L.057 23.493a.5.5 0 0 0 .602.63l5.826-1.524A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.51-5.17-1.399l-.37-.216-3.823 1.002 1.017-3.727-.238-.38A9.944 9.944 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                Consultar por WhatsApp
+              </div>
+            </div>
+          </div>`;
+      }).join('');
+
+      grid.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    }
+
+    // ===== HERO PHOTOS FROM SUPABASE =====
+    async function loadHeroPhotos() {
+      try {
+        const { data, error } = await sb.from('hero_photos').select('*').eq('active', true).order('sort_order').limit(4);
+        if (error || !data?.length) return; // keep placeholders if no photos yet
+        const mosaic = document.getElementById('heroMosaic');
+        const bgs = [
+          'linear-gradient(135deg,#e8c9b5,#c97b63)',
+          'linear-gradient(135deg,#d4a8c7,#8ba888)',
+          'linear-gradient(135deg,#8ba888,#e8c9b5)',
+          'linear-gradient(135deg,#b8a06a,#c97b63)',
+        ];
+        const emojis = ['🌹','🌸','🌿','💐'];
+        // Map by sort_order position
+        const byPos = {};
+        data.forEach(d => { byPos[d.sort_order] = d; });
+        mosaic.innerHTML = [0,1,2,3].map(i => {
+          const item = byPos[i];
+          return `<div class="mosaic-cell" style="overflow:hidden">
+            ${item?.img_url
+              ? `<img src="${item.img_url}" alt="Seminare Flores" style="width:100%;height:100%;object-fit:cover;transition:transform 0.8s ease" />`
+              : `<div class="mosaic-placeholder" style="min-height:200px;background:${bgs[i]}">${emojis[i]}</div>`
+            }
+          </div>`;
+        }).join('');
+      } catch(e) {
+        // Table may not exist yet — keep placeholders
+      }
+    }
+
+    // ===== WA CONFIG FROM SUPABASE =====
+    async function loadWaConfig() {
+      const { data } = await sb.from('config').select('*');
+      if (!data) return;
+      const map = Object.fromEntries(data.map(r => [r.key, r.value]));
+      if (map.wa_phone) WA_PHONE = map.wa_phone;
+      if (map.wa_welcome) {
+        const bubble = document.querySelector('.wa-message-bubble');
+        if (bubble) bubble.innerHTML = map.wa_welcome.replace(/\n/g,'<br>') + '<div class="wa-message-time">Ahora</div>';
+      }
+      if (map.wa_options) {
+        try {
+          const opts = JSON.parse(map.wa_options);
+          const container = document.querySelector('.wa-popup-options');
+          if (container && opts.length) {
+            container.innerHTML = opts.map(o =>
+              `<button class="wa-option" onclick="sendWaMessage('${o.emoji} ${o.text}')">${o.emoji} ${o.text}</button>`
+            ).join('');
+          }
+        } catch {}
+      }
+    }
+
+    // ===== INSTAGRAM FEED (videos) =====
+    async function renderIgFeed() {
+      const igUrl = 'https://www.instagram.com/seminare.flores?igsh=MWphemhnd2pwMWNoMg==';
+      const feed = document.getElementById('igFeed');
+
+      try {
+        const { data, error } = await sb.from('ig_photos').select('*').eq('active', true).order('created_at', { ascending: false }).limit(6);
+
+        if (!error && data?.length) {
+          feed.innerHTML = data.map(item => {
+            const isVideo = item.img_url?.match(/\.(mp4|webm|mov)$/i);
+            return `<a class="ig-item" href="${igUrl}" target="_blank" rel="noopener" aria-label="Ver en Instagram">
+              ${isVideo
+                ? `<video src="${item.img_url}" autoplay muted loop playsinline></video>`
+                : `<img src="${item.img_url}" alt="Seminare Flores" loading="lazy" style="width:100%;height:100%;object-fit:cover" />`
+              }
+              <div class="ig-hover">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4" fill="transparent" stroke="white" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+                <span>Ver en Instagram</span>
+              </div>
+            </a>`;
+          }).join('');
+        } else {
+          // Placeholders
+          const emojis = ['🌹','🌸','💐','🌷','🌺','🌿'];
+          const bgs = ['#e8c9b5','#d4a8c7','#8ba888','#b8a06a','#c97b63','#4a5c43'];
+          feed.innerHTML = emojis.map((e, i) => `
+            <a class="ig-item" href="${igUrl}" target="_blank" rel="noopener" aria-label="Ver en Instagram">
+              <div class="ig-item-placeholder" style="background:${bgs[i]}">
+                ${e}<span>Ver en Instagram</span>
+              </div>
+              <div class="ig-hover">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4" fill="transparent" stroke="white" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+                <span>Ver en Instagram</span>
+              </div>
+            </a>`).join('');
+        }
+      } catch(e) {
+        // Table doesn't exist yet — show placeholders
+        const igUrl2 = igUrl;
+        const emojis = ['🌹','🌸','💐','🌷','🌺','🌿'];
+        const bgs = ['#e8c9b5','#d4a8c7','#8ba888','#b8a06a','#c97b63','#4a5c43'];
+        feed.innerHTML = emojis.map((e, i) => `
+          <a class="ig-item" href="${igUrl2}" target="_blank" rel="noopener">
+            <div class="ig-item-placeholder" style="background:${bgs[i]}">${e}<span>Instagram</span></div>
+          </a>`).join('');
+      }
+    }
+
+    // ===== LIGHTBOX =====
+    function openLightbox(src, alt) {
+      if (!src) return;
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxImg').alt = alt;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeLightbox(); closeWaPopup(); }
+    });
+  </script>
+</body>
+</html>
