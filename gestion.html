@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión | Centro de Operaciones</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: #f1f5f9;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .subtitulo {
+            color: #475569;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+        }
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #334155;
+        }
+        .tab-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+        .panel {
+            display: none;
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .panel.active {
+            display: block;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 20px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+        }
+        .accion-btn {
+            background: none;
+            color: #ef4444;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.8rem;
+        }
+        .resumen {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .card {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 20px;
+            flex: 1;
+            text-align: center;
+        }
+        @media (max-width: 700px) {
+            body { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📋 Centro de Operaciones</h1>
+    <div class="subtitulo">Pedidos · Prospección · Eventos · Clientes</div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="pedidos">📦 Pedidos WhatsApp</button>
+        <button class="tab-btn" data-tab="prospeccion">🏪 Prospección (visitas)</button>
+        <button class="tab-btn" data-tab="eventos">🎉 Eventos / Bodas</button>
+        <button class="tab-btn" data-tab="clientes">👥 Clientes</button>
+    </div>
+
+    <!-- ========================= PANEL PEDIDOS ========================= -->
+    <div id="pedidos" class="panel active">
+        <h3>➕ Registrar pedido (vía WhatsApp)</h3>
+        <div class="form-grid">
+            <input type="text" id="pedidoCliente" placeholder="Nombre del cliente">
+            <input type="text" id="pedidoDescripcion" placeholder="Descripción del pedido">
+            <input type="number" id="pedidoCantidad" placeholder="Cantidad">
+            <input type="number" id="pedidoCosto" placeholder="Costo €">
+            <input type="number" id="pedidoBeneficio" placeholder="Beneficio €">
+            <select id="pedidoEstado"><option>pendiente</option><option>entregado</option></select>
+            <button id="guardarPedido">Guardar pedido</button>
+        </div>
+        <h3>📋 Historial de pedidos</h3>
+        <div style="overflow-x: auto;"><table id="tablaPedidos"><thead><tr><th>Cliente</th><th>Descripción</th><th>Cantidad</th><th>Costo</th><th>Beneficio</th><th>Estado</th><th>Eliminar</th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <!-- ========================= PANEL PROSPECCIÓN ========================= -->
+    <div id="prospeccion" class="panel">
+        <h3>➕ Comercio / visita recurrente</h3>
+        <div class="form-grid">
+            <input type="text" id="prosNombre" placeholder="Nombre comercio">
+            <input type="text" id="prosDireccion" placeholder="Dirección">
+            <select id="prosFrecuencia"><option>diario</option><option>semanal</option><option>mensual</option></select>
+            <input type="date" id="prosUltimaVisita">
+            <input type="date" id="prosProximaVisita">
+            <textarea id="prosNotas" placeholder="Notas"></textarea>
+            <button id="guardarProspeccion">Guardar prospección</button>
+        </div>
+        <h3>📅 Próximas visitas</h3>
+        <div style="overflow-x: auto;"><table id="tablaProspeccion"><thead><tr><th>Comercio</th><th>Dirección</th><th>Frecuencia</th><th>Próxima visita</th><th>Eliminar</th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <!-- ========================= PANEL EVENTOS ========================= -->
+    <div id="eventos" class="panel">
+        <h3>🎯 Agregar evento (boda, cumpleaños...)</h3>
+        <div class="form-grid">
+            <input type="text" id="eventoNombre" placeholder="Nombre evento">
+            <input type="text" id="eventoCliente" placeholder="Cliente (opcional)">
+            <input type="date" id="eventoFecha">
+            <input type="date" id="eventoRecordatorio">
+            <textarea id="eventoStock" placeholder="Stock estimado (ej: 100 copas, 80 sillas)"></textarea>
+            <textarea id="eventoTareas" placeholder="Tareas pendientes (ej: comprar hielo, llamar DJ)"></textarea>
+            <button id="guardarEvento">Guardar evento</button>
+        </div>
+        <h3>📆 Próximos eventos</h3>
+        <div style="overflow-x: auto;"><table id="tablaEventos"><thead><tr><th>Evento</th><th>Cliente</th><th>Fecha</th><th>Recordatorio</th><th>Stock</th><th>Tareas</th><th>Eliminar</th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <!-- ========================= PANEL CLIENTES ========================= -->
+    <div id="clientes" class="panel">
+        <h3>➕ Nuevo cliente</h3>
+        <div class="form-grid">
+            <input type="text" id="cliNombre" placeholder="Nombre completo">
+            <input type="text" id="cliTelefono" placeholder="Teléfono">
+            <input type="email" id="cliEmail" placeholder="Email">
+            <input type="text" id="cliDireccion" placeholder="Dirección">
+            <select id="cliTipo"><option>comercio</option><option>particular</option><option>evento</option></select>
+            <button id="guardarCliente">Guardar cliente</button>
+        </div>
+        <h3>📇 Base de datos clientes</h3>
+        <div style="overflow-x: auto;"><table id="tablaClientes"><thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th><th>Tipo</th><th>Eliminar</th></tr></thead><tbody></tbody></table></div>
+    </div>
+</div>
+
+<script>
+    // CONFIGURACIÓN SUPABASE (con la clave que me diste)
+    const SUPABASE_URL = 'https://knxldignenywcbjbeejf.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_y0D9piqxfK4idgj2mszecw_GGFNcEuw';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // --- FUNCIONES GENÉRICAS CRUD ---
+    async function cargarTabla(tabla, selector, mapeo, eliminarId=true) {
+        const { data, error } = await supabase.from(tabla).select('*').order('id', { ascending: false });
+        if (error) return console.error(error);
+        const tbody = document.querySelector(`${selector} tbody`);
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            mapeo(row, tr);
+            if (eliminarId) {
+                const tdDel = document.createElement('td');
+                const btn = document.createElement('button');
+                btn.textContent = '🗑️';
+                btn.className = 'accion-btn';
+                btn.onclick = () => eliminarRegistro(tabla, row.id, selector);
+                tdDel.appendChild(btn);
+                tr.appendChild(tdDel);
+            }
+            tbody.appendChild(tr);
+        });
+    }
+
+    async function eliminarRegistro(tabla, id, selector) {
+        if (!confirm('¿Eliminar?')) return;
+        await supabase.from(tabla).delete().eq('id', id);
+        cargarTabla(tabla, selector, getMapeo(tabla));
+    }
+
+    function getMapeo(tabla) {
+        const mapeos = {
+            pedidos: (row, tr) => { tr.innerHTML = `<td>${row.cliente_id || ''}</td><td>${row.descripcion||''}</td><td>${row.cantidad||''}</td><td>${row.costo||''}</td><td>${row.beneficio||''}</td><td>${row.estado||''}</td>`; },
+            prospeccion: (row, tr) => { tr.innerHTML = `<td>${row.comercio||''}</td><td>${row.direccion||''}</td><td>${row.frecuencia||''}</td><td>${row.proxima_visita||''}</td>`; },
+            eventos: (row, tr) => { tr.innerHTML = `<td>${row.nombre_evento||''}</td><td>${row.cliente_id||''}</td><td>${row.fecha_evento||''}</td><td>${row.fecha_recordatorio||''}</td><td>${row.stock_estimado||''}</td><td>${row.tareas_pendientes||''}</td>`; },
+            clientes: (row, tr) => { tr.innerHTML = `<td>${row.nombre||''}</td><td>${row.telefono||''}</td><td>${row.email||''}</td><td>${row.tipo||''}</td>`; }
+        };
+        return mapeos[tabla] || ((row,tr)=>tr.innerHTML='<td>...</td>');
+    }
+
+    // Guardar pedido
+    document.getElementById('guardarPedido')?.addEventListener('click', async () => {
+        await supabase.from('pedidos').insert([{
+            cliente_id: document.getElementById('pedidoCliente').value,
+            descripcion: document.getElementById('pedidoDescripcion').value,
+            cantidad: parseInt(document.getElementById('pedidoCantidad').value) || 0,
+            costo: parseFloat(document.getElementById('pedidoCosto').value) || 0,
+            beneficio: parseFloat(document.getElementById('pedidoBeneficio').value) || 0,
+            estado: document.getElementById('pedidoEstado').value
+        }]);
+        cargarTabla('pedidos', '#tablaPedidos', getMapeo('pedidos'));
+        document.querySelectorAll('#pedidos input').forEach(i=>i.value='');
+    });
+
+    // Guardar prospección
+    document.getElementById('guardarProspeccion')?.addEventListener('click', async () => {
+        await supabase.from('prospeccion').insert([{
+            comercio: document.getElementById('prosNombre').value,
+            direccion: document.getElementById('prosDireccion').value,
+            frecuencia: document.getElementById('prosFrecuencia').value,
+            ultima_visita: document.getElementById('prosUltimaVisita').value,
+            proxima_visita: document.getElementById('prosProximaVisita').value,
+            notas: document.getElementById('prosNotas').value
+        }]);
+        cargarTabla('prospeccion', '#tablaProspeccion', getMapeo('prospeccion'));
+    });
+
+    // Guardar evento
+    document.getElementById('guardarEvento')?.addEventListener('click', async () => {
+        await supabase.from('eventos').insert([{
+            nombre_evento: document.getElementById('eventoNombre').value,
+            cliente_id: document.getElementById('eventoCliente').value,
+            fecha_evento: document.getElementById('eventoFecha').value,
+            fecha_recordatorio: document.getElementById('eventoRecordatorio').value,
+            stock_estimado: document.getElementById('eventoStock').value,
+            tareas_pendientes: document.getElementById('eventoTareas').value
+        }]);
+        cargarTabla('eventos', '#tablaEventos', getMapeo('eventos'));
+    });
+
+    // Guardar cliente
+    document.getElementById('guardarCliente')?.addEventListener('click', async () => {
+        await supabase.from('clientes').insert([{
+            nombre: document.getElementById('cliNombre').value,
+            telefono: document.getElementById('cliTelefono').value,
+            email: document.getElementById('cliEmail').value,
+            direccion: document.getElementById('cliDireccion').value,
+            tipo: document.getElementById('cliTipo').value
+        }]);
+        cargarTabla('clientes', '#tablaClientes', getMapeo('clientes'));
+    });
+
+    // Cargar todas las tablas al inicio
+    cargarTabla('pedidos', '#tablaPedidos', getMapeo('pedidos'));
+    cargarTabla('prospeccion', '#tablaProspeccion', getMapeo('prospeccion'));
+    cargarTabla('eventos', '#tablaEventos', getMapeo('eventos'));
+    cargarTabla('clientes', '#tablaClientes', getMapeo('clientes'));
+
+    // Sistema de pestañas
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(btn.dataset.tab).classList.add('active');
+        });
+    });
+</script>
+</body>
+  </html>
