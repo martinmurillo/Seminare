@@ -1,0 +1,22 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '0 8 */3 * *'   # cada 3 días a las 08:00 UTC
+  workflow_dispatch:          # también ejecutable manualmente
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://knxldignenywcbjbeejf.supabase.co/rest/v1/" \
+            -H "apikey: sb_publishable_y0D9piqxfK4idgj2mszecw_GGFNcEuw" \
+            -H "Authorization: Bearer sb_publishable_y0D9piqxfK4idgj2mszecw_GGFNcEuw")
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "Unexpected status, project may be paused or unreachable"
+            exit 1
+          fi
